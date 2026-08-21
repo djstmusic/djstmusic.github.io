@@ -1,40 +1,591 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>DJSTMUSIC | Official Website</title>
-  <style>
-    *{box-sizing:border-box;margin:0;padding:0;font-family:Arial,sans-serif}
-    body{background:#050507;color:#fff;text-align:center}
-    header{
-      min-height:520px;padding:55px 20px 45px;
-      display:flex;flex-direction:column;align-items:center;justify-content:center;
-      background:radial-gradient(circle at top,#252525 0,#0b0b0f 55%,#050507 100%);
-    }
-    .logo{width:min(330px,80vw);border-radius:50%;filter:drop-shadow(0 0 25px #ff7a00);margin-bottom:25px}
-    h1{font-size:clamp(36px,8vw,64px);letter-spacing:2px}
-    header p{color:#ccc;font-size:17px;margin-top:10px}
-    .buttons{padding:30px 20px;display:flex;justify-content:center;gap:15px;flex-wrap:wrap}
-    .btn{display:inline-block;padding:14px 25px;border-radius:30px;text-decoration:none;color:#fff;font-weight:bold}
-    .youtube{background:#e60000}.whatsapp{background:#16a34a}
-    section{max-width:900px;margin:auto;padding:35px 20px}
-    section h2{font-size:28px;margin-bottom:15px}
-    section p{color:#ccc;line-height:1.7}
-    .songs{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-top:25px}
-    .card{background:#121217;border:1px solid #29292f;border-radius:18px;padding:25px}
-    .play{margin-top:15px;display:inline-block;padding:10px 20px;border-radius:22px;background:#ff6a00;color:#fff;text-decoration:none;font-weight:bold}
-    footer{padding:25px;margin-top:30px;background:#111;color:#aaa}
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>DJSTMUSIC | Santali Songs & Music</title>
+
+<style>
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+body{
+  font-family:Arial,sans-serif;
+  background:#fff;
+  color:#222;
+}
+
+a{
+  text-decoration:none;
+}
+
+.header{
+  background:#050505;
+  text-align:center;
+  padding:20px 10px;
+  border-bottom:4px solid #e00000;
+}
+
+.logo{
+  width:280px;
+  max-width:90%;
+}
+
+.telegram{
+  display:block;
+  width:90%;
+  max-width:360px;
+  margin:25px auto;
+  padding:15px;
+  background:#2196d3;
+  color:white;
+  font-size:21px;
+  font-weight:bold;
+  border-radius:35px;
+  box-shadow:0 4px 0 #aaa;
+  text-align:center;
+}
+
+.youtube-box{
+  width:94%;
+  max-width:700px;
+  margin:20px auto;
+  padding:20px;
+  text-align:center;
+  border-radius:22px;
+  box-shadow:0 2px 15px #ddd;
+}
+
+.youtube-box h2{
+  color:#d71919;
+  font-size:22px;
+  margin-bottom:10px;
+}
+
+.youtube-box p{
+  color:#666;
+  font-size:18px;
+  margin-bottom:15px;
+}
+
+.youtube-btn{
+  display:inline-block;
+  background:#e60000;
+  color:#fff;
+  padding:11px 25px;
+  border-radius:5px;
+  font-size:18px;
+  font-weight:bold;
+}
+
+.search-title{
+  text-align:center;
+  color:#8d1b1b;
+  font-size:21px;
+  margin:30px 10px;
+}
+
+.search{
+  display:flex;
+  width:92%;
+  max-width:600px;
+  margin:20px auto;
+  gap:10px;
+}
+
+.search input{
+  flex:1;
+  padding:17px;
+  border:2px solid #299bd0;
+  border-radius:35px;
+  font-size:18px;
+  outline:none;
+}
+
+.search button{
+  width:65px;
+  border:0;
+  border-radius:50%;
+  background:#299bd0;
+  color:white;
+  font-size:25px;
+}
+
+.find-box{
+  width:100%;
+  background:#fff8df;
+  border-left:8px solid #f0a000;
+  padding:25px 15px;
+  text-align:center;
+  margin:20px 0;
+}
+
+.find-box h2{
+  font-size:22px;
+}
+
+.find-box p{
+  color:#666;
+  margin-top:10px;
+  line-height:1.5;
+}
+
+.tip{
+  background:#fff2bd;
+  border:2px solid #f5df8c;
+  padding:15px;
+  margin-top:15px;
+  border-radius:12px;
+  color:#75631c;
+}
+
+.categories{
+  text-align:center;
+  padding:15px;
+}
+
+.cat{
+  display:inline-block;
+  color:white;
+  padding:13px 20px;
+  margin:5px;
+  border-radius:10px;
+  font-size:19px;
+  font-weight:bold;
+}
+
+.blue{background:#16b6d9;}
+.green{background:#079817;}
+.yellow{background:#edc20b;}
+.pink{background:#e84ca7;}
+
+.section-title{
+  background:#2297d0;
+  color:white;
+  padding:12px 10px;
+  font-size:22px;
+  margin-top:20px;
+}
+
+.item{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:15px;
+  border-bottom:1px solid #eee;
+  min-height:110px;
+}
+
+.item img{
+  width:90px;
+  height:90px;
+  object-fit:cover;
+  border:1px solid #ddd;
+}
+
+.item a{
+  color:#298bb8;
+  font-size:20px;
+}
+
+.item small{
+  display:block;
+  font-size:17px;
+  color:#555;
+  margin-top:5px;
+}
+
+.latest{
+  padding:0 10px;
+}
+
+.latest-item{
+  padding:15px 0;
+  border-bottom:1px solid #eee;
+  font-size:18px;
+  line-height:1.5;
+}
+
+.latest-item a{
+  color:#2991bd;
+}
+
+.folder{
+  display:block;
+  padding:17px 10px;
+  border-bottom:1px solid #eee;
+  color:#298bb8;
+  font-size:20px;
+}
+
+.special{
+  display:block;
+  padding:17px 25px;
+  border-bottom:1px solid #eee;
+  color:#298bb8;
+  font-size:20px;
+}
+
+.share{
+  text-align:center;
+  background:#eee;
+  padding:15px 5px;
+  margin-top:20px;
+}
+
+.share-title{
+  color:#298bb8;
+  font-size:19px;
+  margin-bottom:15px;
+}
+
+.share a{
+  display:inline-block;
+  color:white;
+  padding:13px 15px;
+  margin:3px;
+  font-weight:bold;
+}
+
+.whatsapp{background:#10c735;}
+.facebook{background:#405c9a;}
+.telegram2{background:#148fc2;}
+.twitter{background:#35c4dc;}
+
+.footer{
+  background:#2297d0;
+  color:white;
+  padding:15px 10px;
+  margin-top:20px;
+}
+
+.footer a{
+  color:white;
+}
+
+.download{
+  position:fixed;
+  bottom:12px;
+  left:10%;
+  width:80%;
+  background:#1638f5;
+  color:#000;
+  padding:13px;
+  text-align:center;
+  font-size:22px;
+  border-radius:8px;
+  box-shadow:0 1px 4px #555;
+  z-index:999;
+}
+
+@media(max-width:500px){
+  .cat{
+    font-size:18px;
+    padding:12px 15px;
+  }
+
+  .section-title{
+    font-size:20px;
+  }
+
+  .item a{
+    font-size:19px;
+  }
+}
+</style>
 </head>
+
 <body>
 
-<header>
-  <img class="logo" src="dj-logo.png" alt="DJSTMUSIC Logo">
-  <h1>DJSTMUSIC</h1>
-  <p>Official DJ Music & Entertainment Website</p>
+<!-- HEADER -->
+<header class="header">
+
+  <!-- Apna logo yahan rakhein -->
+  <img src="dj-logo.png" class="logo" alt="DJSTMUSIC Logo">
+
 </header>
 
+<!-- TELEGRAM -->
+<a class="telegram"
+href="https://t.me/"
+target="_blank">
+✈️ &nbsp; Join Telegram Channel
+</a>
+
+<!-- YOUTUBE -->
+<div class="youtube-box">
+
+  <h2>📺 Subscribe Our YouTube Channel</h2>
+
+  <p>Latest Santali Songs & Videos</p>
+
+  <p><b>DJSTMUSIC Official</b></p>
+
+  <a class="youtube-btn"
+  href="https://youtube.com/"
+  target="_blank">
+  ▶ YouTube
+  </a>
+
+</div>
+
+<!-- SEARCH -->
+<div class="search-title">
+No. 1 Santali Song Download Site – New Santali Songs
+</div>
+
+<div class="search">
+
+  <input
+  type="text"
+  id="searchBox"
+  placeholder="Search Here...">
+
+  <button onclick="searchSongs()">🔍</button>
+
+</div>
+
+<!-- FIND SONG -->
+<div class="find-box">
+
+  <h2>🎵 Find Songs Instantly</h2>
+
+  <p>Search HD Santali Songs</p>
+
+  <p>ℹ️ Only Santali songs & audio available here</p>
+
+  <div class="tip">
+  🚀 Fast Download Tip: Better experience ke liye page load complete hone ke baad hi <b>Confirm Download</b> button dabayein.
+  </div>
+
+</div>
+
+<!-- CATEGORIES -->
+<div class="categories">
+
+  <a class="cat blue" href="#studio">
+  Santali Studio Version Songs 2026
+  </a>
+
+  <a class="cat green" href="#new">
+  New Santali Songs 2026
+  </a>
+
+  <a class="cat yellow" href="#traditional">
+  Santali Traditional Songs
+  </a>
+
+  <a class="cat pink" href="#ai">
+  Santali AI Cover Songs
+  </a>
+
+</div>
+
+<!-- SINGERS -->
+<h2 class="section-title">Featured Singer</h2>
+
+<div class="item">
+  <img src="dj-logo.png" alt="Singer">
+  <a href="#">Kasinath</a>
+</div>
+
+<div class="item">
+  <img src="dj-logo.png" alt="Singer">
+  <a href="#">Biku Bro</a>
+</div>
+
+<div class="item">
+  <img src="dj-logo.png" alt="Singer">
+  <a href="#">Kalyan Kisku</a>
+</div>
+
+<!-- SONGS -->
+<h2 class="section-title">Featured Songs</h2>
+
+<div class="item">
+  <img src="dj-logo.png" alt="Song">
+  <div>
+    <a href="#">Chhudar.Mp3</a>
+    <small>4.94 MB | 3 Hits</small>
+  </div>
+</div>
+
+<div class="item">
+  <img src="dj-logo.png" alt="Song">
+  <div>
+    <a href="#">A Biti Amge Sona 2.Mp3</a>
+    <small>6.66 MB | 8 Hits</small>
+  </div>
+</div>
+
+<div class="item">
+  <img src="dj-logo.png" alt="Song">
+  <div>
+    <a href="#">Kisar Orah Kuidi Miru.Mp3</a>
+    <small>5.97 MB | 2 Hits</small>
+  </div>
+</div>
+
+<!-- LATEST -->
+<h2 class="section-title">Latest Updates</h2>
+
+<div class="latest">
+
+  <div class="latest-item">
+    <b>Santali Traditional Songs</b> ::
+    Santali Studio Version Traditional Songs 2026 ::
+    <b>Guti Kora</b> (Keda Iswar, Rupali)
+    <a href="#">[Click Here]</a>
+  </div>
+
+  <div class="latest-item">
+    <b>New Santali Songs 2026</b> ::
+    Santali Romantic Songs 2026 ::
+    <b>Munur Mai</b> (Gangadhar Murmu, Sarathi Hembram)
+    <a href="#">[Click Here]</a>
+  </div>
+
+  <div class="latest-item">
+    <b>New Santali Songs 2026</b> ::
+    Santali Romantic Songs 2026 ::
+    <b>Marang Buru Hanasa Re</b> (Biku Bro)
+    <a href="#">[Click Here]</a>
+  </div>
+
+  <div class="latest-item">
+    <b>New Santali Songs 2026</b> ::
+    Santali Romantic Songs 2026 ::
+    <b>Hopon Mai 2</b> (Stephan Tudu, Monika Besra)
+    <a href="#">[Click Here]</a>
+  </div>
+
+  <div class="latest-item">
+    <b>Santali Studio Version Songs 2026</b> ::
+    Santali Romantic Songs 2026 ::
+    <b>Masoom Chehra</b> (Deepu Marndi)
+    <a href="#">[Click Here]</a>
+  </div>
+
+</div>
+
+<!-- SONG CATEGORY -->
+<h2 class="section-title">Select Songs Category</h2>
+
+<a class="folder" href="#new">
+📁 New Santali Songs 2026
+</a>
+
+<a class="folder" href="#ai">
+📁 Santali AI Cover Songs
+</a>
+
+<a class="folder" href="#studio">
+📁 Santali Studio Version Songs 2026
+</a>
+
+<a class="folder" href="#traditional">
+📁 Santali Traditional Songs
+</a>
+
+<!-- SPECIAL DOWNLOAD -->
+<h2 class="section-title">Special Download</h2>
+
+<a class="special" href="#">
+» Watch & Download Movies
+</a>
+
+<a class="special" href="#">
+» A-Z Singer Collection
+</a>
+
+<a class="special" href="#">
+» Top 20 Files
+</a>
+
+<a class="special" href="#">
+» Last Added Files
+</a>
+
+<!-- SHARE -->
+<div class="share">
+
+  <div class="share-title">
+  Share This Page Via ↓
+  </div>
+
+  <a class="whatsapp"
+  href="https://wa.me/?text=DJSTMUSIC"
+  target="_blank">
+  Whatsapp
+  </a>
+
+  <a class="facebook"
+  href="https://www.facebook.com/sharer/sharer.php"
+  target="_blank">
+  Facebook
+  </a>
+
+  <a class="telegram2"
+  href="https://t.me/share/url"
+  target="_blank">
+  Telegram
+  </a>
+
+  <a class="twitter"
+  href="https://twitter.com/intent/tweet"
+  target="_blank">
+  Twitter
+  </a>
+
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+
+  <b>Home »</b>
+  <br><br>
+
+  <a href="#">Sitemap</a>
+
+  <br><br>
+
+  © 2026 DJSTMUSIC — All Rights Reserved.
+
+</footer>
+
+<!-- FIXED DOWNLOAD -->
+<a class="download" href="#">
+Download Now
+</a>
+
+<script>
+
+function searchSongs(){
+
+  let text =
+  document.getElementById("searchBox")
+  .value
+  .toLowerCase();
+
+  if(text === ""){
+    alert("Song name type karein!");
+    return;
+  }
+
+  alert(
+  "Searching for: " + text
+  );
+
+}
+
+</script>
+
+</body>
+</html>
 <div class="buttons">
   <!-- Replace these links with your real links -->
   <a class="btn youtube" href="https://www.youtube.com/" target="_blank">▶ YouTube Channel</a>
