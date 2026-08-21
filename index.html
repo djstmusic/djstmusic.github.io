@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>DJST MUSIC | Santali Music</title>
+<title>DJSTMUSIC | Santali DJ Songs</title>
 
 <style>
 *{
@@ -15,56 +15,52 @@
 
 body{
   font-family:Arial,sans-serif;
-  background:#f5f7fa;
+  background:#f4f6f9;
   color:#222;
 }
 
 header{
-  background:linear-gradient(135deg,#050505,#151515);
+  background:#080808;
+  color:white;
   text-align:center;
-  padding:25px 15px;
-  border-bottom:4px solid #00aaff;
+  padding:35px 15px;
+  border-bottom:5px solid #00aaff;
 }
 
 .logo{
-  width:150px;
-  height:150px;
+  width:180px;
+  height:180px;
   object-fit:cover;
-  border-radius:20px;
-  margin-bottom:12px;
+  border-radius:25px;
+  margin-bottom:20px;
 }
 
 header h1{
-  color:white;
-  font-size:32px;
+  font-size:42px;
+  margin-bottom:10px;
 }
 
 header p{
-  color:#bbb;
-  margin-top:8px;
-}
-
-.container{
-  max-width:900px;
-  margin:auto;
-  padding:20px 15px 100px;
+  color:#ccc;
+  font-size:18px;
 }
 
 .buttons{
   display:flex;
-  gap:12px;
-  flex-wrap:wrap;
   justify-content:center;
-  margin-bottom:25px;
+  gap:15px;
+  flex-wrap:wrap;
+  padding:30px 15px 20px;
 }
 
 .btn{
-  display:inline-block;
   text-decoration:none;
   color:white;
-  padding:13px 22px;
-  border-radius:30px;
+  padding:16px 30px;
+  border-radius:35px;
+  font-size:18px;
   font-weight:bold;
+  display:inline-block;
 }
 
 .youtube{
@@ -72,86 +68,91 @@ header p{
 }
 
 .whatsapp{
-  background:#19b955;
+  background:#19b94b;
 }
 
-.search{
+.search-box{
+  max-width:850px;
+  margin:10px auto 30px;
+  padding:0 15px;
   display:flex;
   gap:10px;
-  margin-bottom:25px;
 }
 
-.search input{
+.search-box input{
   flex:1;
-  padding:15px 18px;
+  padding:18px 22px;
   border:2px solid #ddd;
-  border-radius:30px;
-  font-size:16px;
+  border-radius:35px;
+  font-size:17px;
   outline:none;
 }
 
-.search button{
-  width:55px;
+.search-box button{
+  width:65px;
   border:0;
   border-radius:50%;
-  background:#149ddd;
+  background:#129bd5;
   color:white;
-  font-size:22px;
+  font-size:25px;
 }
 
-.title{
+.container{
+  max-width:950px;
+  margin:auto;
+  padding:0 15px 100px;
+}
+
+.section-title{
   background:#159bd3;
   color:white;
-  padding:15px;
-  border-radius:10px;
-  margin:20px 0 15px;
+  padding:20px;
+  border-radius:15px;
+  font-size:28px;
+  margin-bottom:20px;
 }
 
 .song{
   background:white;
   border-radius:15px;
-  padding:15px;
+  padding:18px;
   margin-bottom:15px;
-  box-shadow:0 3px 12px rgba(0,0,0,.08);
-}
-
-.song-top{
+  box-shadow:0 3px 12px #0001;
   display:flex;
   align-items:center;
-  gap:15px;
+  gap:18px;
 }
 
-.song img{
-  width:75px;
-  height:75px;
+.song-img{
+  width:90px;
+  height:90px;
   object-fit:cover;
   border-radius:12px;
+  flex-shrink:0;
 }
 
 .song-info{
   flex:1;
+  min-width:0;
 }
 
-.song-name{
-  font-size:18px;
+.song-title{
+  color:#168ab8;
+  font-size:20px;
   font-weight:bold;
-  color:#1788b7;
+  margin-bottom:10px;
   word-break:break-word;
 }
 
 audio{
   width:100%;
-  margin-top:12px;
-}
-
-.actions{
-  display:flex;
-  gap:10px;
-  margin-top:12px;
+  margin-top:5px;
 }
 
 .download{
-  background:#1655ff;
+  display:inline-block;
+  margin-top:10px;
+  background:#1750ff;
   color:white;
   text-decoration:none;
   padding:10px 18px;
@@ -159,482 +160,24 @@ audio{
   font-weight:bold;
 }
 
-#loading{
+.loading,
+.empty,
+.error{
+  background:white;
+  padding:35px 20px;
   text-align:center;
-  padding:25px;
-  color:#777;
+  border-radius:15px;
+  color:#666;
+  margin-bottom:20px;
+}
+
+.error{
+  color:#c00;
 }
 
 footer{
-  background:#111;
-  color:#aaa;
-  text-align:center;
-  padding:25px 10px;
-  margin-top:30px;
-}
-
-@media(max-width:600px){
-  header h1{
-    font-size:25px;
-  }
-
-  .song img{
-    width:65px;
-    height:65px;
-  }
-
-  .song-name{
-    font-size:16px;
-  }
-}
-</style>
-</head>
-
-<body>
-
-<header>
-
-  <!-- Apna logo -->
-  <img src="dj-logo.png" class="logo">
-
-  <h1>DJST MUSIC</h1>
-  <p>Latest Santali Songs, Music & Entertainment</p>
-
-</header>
-
-<div class="container">
-
-  <div class="buttons">
-
-    <!-- YouTube link yahan apna link lagao -->
-    <a class="btn youtube"
-       href="https://www.youtube.com/"
-       target="_blank">
-       ▶ Subscribe on YouTube
-    </a>
-
-    <!-- WhatsApp link yahan apna link lagao -->
-    <a class="btn whatsapp"
-       href="https://wa.me/"
-       target="_blank">
-       💬 WhatsApp
-    </a>
-
-  </div>
-
-  <div class="search">
-    <input
-      type="text"
-      id="search"
-      placeholder="Search Santali Songs..."
-      oninput="searchSongs()">
-
-    <button>🔍</button>
-  </div>
-
-  <h2 class="title">🎵 Latest Santali Songs</h2>
-
-  <div id="loading">
-    Songs loading...
-  </div>
-
-  <div id="songs"></div>
-
-</div>
-
-<footer>
-  © 2026 DJST MUSIC • All Rights Reserved
-</footer>
-
-<script>
-
-const username = "djstmusic";
-const repo = "djstmusic.github.io";
-
-const songFolder = "songs";
-
-const logo = "dj-logo.png";
-
-let allSongs = [];
-
-
-/* GitHub se songs automatically read karega */
-
-async function loadSongs(){
-
-  const loading = document.getElementById("loading");
-
-  try{
-
-    const url =
-      `https://api.github.com/repos/${username}/${repo}/contents/${songFolder}`;
-
-    const response = await fetch(url);
-
-    if(!response.ok){
-      throw new Error("Songs folder not found");
-    }
-
-    const files = await response.json();
-
-    allSongs = files.filter(file =>
-      file.type === "file" &&
-      file.name.toLowerCase().endsWith(".mp3")
-    );
-
-    loading.style.display = "none";
-
-    showSongs(allSongs);
-
-  }catch(error){
-
-    loading.innerHTML =
-      "🎵 Abhi koi song upload nahi hai.";
-
-    console.log(error);
-
-  }
-
-}
-
-
-/* Songs display */
-
-function showSongs(songs){
-
-  const box = document.getElementById("songs");
-
-  box.innerHTML = "";
-
-  if(songs.length === 0){
-
-    box.innerHTML =
-      "<p style='text-align:center;padding:30px'>No songs found.</p>";
-
-    return;
-  }
-
-
-  songs.forEach(song => {
-
-    const audioURL =
-      `https://${username}.github.io/${repo}/${songFolder}/${encodeURIComponent(song.name)}`;
-
-    const div = document.createElement("div");
-
-    div.className = "song";
-
-    div.innerHTML = `
-
-      <div class="song-top">
-
-        <img src="${logo}" alt="Song">
-
-        <div class="song-info">
-
-          <div class="song-name">
-            ${song.name}
-          </div>
-
-        </div>
-
-      </div>
-
-      <audio controls preload="none">
-        <source src="${audioURL}" type="audio/mpeg">
-      </audio>
-
-      <div class="actions">
-
-        <a
-          class="download"
-          href="${audioURL}"
-          download>
-          ⬇ Download
-        </a>
-
-      </div>
-
-    `;
-
-    box.appendChild(div);
-
-  });
-
-}
-
-
-/* Search */
-
-function searchSongs(){
-
-  const text =
-    document
-    .getElementById("search")
-    .value
-    .toLowerCase();
-
-  const filtered =
-    allSongs.filter(song =>
-      song.name.toLowerCase().includes(text)
-    );
-
-  showSongs(filtered);
-
-}
-
-
-/* Start */
-
-loadSongs();
-
-</script>
-
-</body>
-</html>    }
-
-    .logo {
-      width: 230px;
-      max-width: 80%;
-      height: auto;
-    }
-
-    .site-title {
-      color: #ffffff;
-      font-size: 30px;
-      margin-top: 12px;
-      font-weight: 800;
-      letter-spacing: 1px;
-    }
-
-    .tagline {
-      color: #aaa;
-      margin-top: 7px;
-      font-size: 14px;
-    }
-
-    /* ================= WHATSAPP ================= */
-
-    .whatsapp {
-      display: block;
-      width: 92%;
-      max-width: 500px;
-      margin: 22px auto 12px;
-      padding: 15px;
-      background: #25d366;
-      color: white;
-      text-align: center;
-      text-decoration: none;
-      border-radius: 12px;
-      font-size: 18px;
-      font-weight: bold;
-      box-shadow: 0 5px 15px rgba(0,0,0,.15);
-    }
-
-    .whatsapp:hover {
-      background: #1ebe5d;
-    }
-
-    /* ================= YOUTUBE ================= */
-
-    .youtube-box {
-      background: white;
-      width: 92%;
-      max-width: 700px;
-      margin: 15px auto 25px;
-      padding: 22px 15px;
-      text-align: center;
-      border-radius: 15px;
-      box-shadow: 0 4px 15px rgba(0,0,0,.08);
-    }
-
-    .youtube-title {
-      color: #e60000;
-      font-size: 22px;
-      font-weight: bold;
-    }
-
-    .youtube-text {
-      color: #777;
-      margin: 8px 0 16px;
-      font-size: 15px;
-    }
-
-    .youtube-btn {
-      display: inline-block;
-      background: #e60000;
-      color: white;
-      padding: 13px 25px;
-      border-radius: 8px;
-      text-decoration: none;
-      font-weight: bold;
-      font-size: 17px;
-    }
-
-    .youtube-btn:hover {
-      background: #c90000;
-    }
-
-    /* ================= MAIN ================= */
-
-    main {
-      width: 94%;
-      max-width: 1000px;
-      margin: auto;
-    }
-
-    /* ================= SEARCH ================= */
-
-    .search-box {
-      display: flex;
-      gap: 10px;
-      margin: 25px 0;
-    }
-
-    .search-box input {
-      flex: 1;
-      padding: 15px;
-      border: 2px solid #ddd;
-      border-radius: 12px;
-      font-size: 16px;
-      outline: none;
-      background: white;
-    }
-
-    .search-box input:focus {
-      border-color: #008fe5;
-    }
-
-    .search-box button {
-      width: 58px;
-      border: none;
-      border-radius: 12px;
-      background: #008fe5;
-      color: white;
-      font-size: 20px;
-      cursor: pointer;
-    }
-
-    /* ================= CATEGORIES ================= */
-
-    .categories {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 12px;
-      margin-bottom: 30px;
-    }
-
-    .category {
-      padding: 16px 10px;
-      text-align: center;
-      color: white;
-      text-decoration: none;
-      border-radius: 10px;
-      font-weight: bold;
-    }
-
-    .cat-blue {
-      background: #009fe3;
-    }
-
-    .cat-green {
-      background: #159447;
-    }
-
-    .cat-yellow {
-      background: #e5b800;
-    }
-
-    .cat-pink {
-      background: #e44ca4;
-    }
-
-    /* ================= SECTION ================= */
-
-    .section-title {
-      background: #008fd0;
-      color: white;
-      padding: 15px;
-      border-radius: 10px 10px 0 0;
-      font-size: 22px;
-      margin-top: 25px;
-    }
-
-    /* ================= SONG CARD ================= */
-
-    .song-card {
-      background: white;
-      display: flex;
-      align-items: center;
-      gap: 15px;
-      padding: 15px;
-      border-bottom: 1px solid #ddd;
-    }
-
-    .song-image {
-      width: 85px;
-      height: 85px;
-      object-fit: cover;
-      border-radius: 10px;
-      background: #eee;
-    }
-
-    .song-info {
-      flex: 1;
-    }
-
-    .song-name {
-      color: #0085bd;
-      font-size: 18px;
-      font-weight: bold;
-      margin-bottom: 7px;
-    }
-
-    .artist {
-      color: #777;
-      font-size: 14px;
-    }
-
-    .download {
-      display: inline-block;
-      margin-top: 10px;
-      padding: 8px 14px;
-      background: #1264e8;
-      color: white;
-      text-decoration: none;
-      border-radius: 7px;
-      font-size: 14px;
-    }
-
-    /* ================= FOOTER ================= */
-
-    footer {
-      background: #111;
-      color: #aaa;
-      text-align: center;
-      padding: 25px 15px;
-      margin-top: 40px;
-    }
-
-    footer strong {
-      color: white;
-    }
-
-    /* ================= MOBILE ================= */
-
-    @media (max-width: 600px) {
-
-      .site-title {
-        font-size: 25px;
-      }
-
-      .categories {
-        grid-template-columns: 1fr;
-      }
-
-      .song-card {
-        padding: 12px;
-      }
+  background:#080808;
+  color      }
 
       .song-image {
         width: 75px;
