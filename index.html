@@ -21,7 +21,7 @@ body{
 
 header{
   background:#080808;
-  color:white;
+  color:#fff;
   text-align:center;
   padding:35px 15px;
   border-bottom:5px solid #00aaff;
@@ -32,7 +32,7 @@ header{
   height:180px;
   object-fit:cover;
   border-radius:25px;
-  margin-bottom:20px;
+  margin-bottom:18px;
 }
 
 header h1{
@@ -60,7 +60,6 @@ header p{
   border-radius:35px;
   font-size:18px;
   font-weight:bold;
-  display:inline-block;
 }
 
 .youtube{
@@ -68,10 +67,10 @@ header p{
 }
 
 .whatsapp{
-  background:#19b94b;
+  background:#18b94b;
 }
 
-.search-box{
+.search{
   max-width:850px;
   margin:10px auto 30px;
   padding:0 15px;
@@ -79,7 +78,7 @@ header p{
   gap:10px;
 }
 
-.search-box input{
+.search input{
   flex:1;
   padding:18px 22px;
   border:2px solid #ddd;
@@ -88,12 +87,12 @@ header p{
   outline:none;
 }
 
-.search-box button{
+.search button{
   width:65px;
   border:0;
   border-radius:50%;
   background:#129bd5;
-  color:white;
+  color:#fff;
   font-size:25px;
 }
 
@@ -105,7 +104,7 @@ header p{
 
 .section-title{
   background:#159bd3;
-  color:white;
+  color:#fff;
   padding:20px;
   border-radius:15px;
   font-size:28px;
@@ -113,7 +112,7 @@ header p{
 }
 
 .song{
-  background:white;
+  background:#fff;
   border-radius:15px;
   padding:18px;
   margin-bottom:15px;
@@ -152,8 +151,8 @@ audio{
 .download{
   display:inline-block;
   margin-top:10px;
-  background:#1750ff;
-  color:white;
+  background:#1745f5;
+  color:#fff;
   text-decoration:none;
   padding:10px 18px;
   border-radius:8px;
@@ -163,7 +162,7 @@ audio{
 .loading,
 .empty,
 .error{
-  background:white;
+  background:#fff;
   padding:35px 20px;
   text-align:center;
   border-radius:15px;
@@ -177,260 +176,397 @@ audio{
 
 footer{
   background:#080808;
-  color      }
+  color:#aaa;
+  text-align:center;
+  padding:25px;
+}
 
-      .song-image {
-        width: 75px;
-        height: 75px;
-      }
+@media(max-width:600px){
 
-      .song-name {
-        font-size: 16px;
-      }
+  header{
+    padding:25px 10px;
+  }
 
-      .youtube-title {
-        font-size: 19px;
-      }
+  .logo{
+    width:150px;
+    height:150px;
+  }
 
-    }
+  header h1{
+    font-size:32px;
+  }
 
-  </style>
+  header p{
+    font-size:15px;
+  }
+
+  .song{
+    padding:12px;
+    gap:12px;
+  }
+
+  .song-img{
+    width:75px;
+    height:75px;
+  }
+
+  .song-title{
+    font-size:17px;
+  }
+
+  .section-title{
+    font-size:23px;
+  }
+}
+</style>
 </head>
-
 
 <body>
 
+<header>
 
-  <!-- ================= HEADER ================= -->
+<img src="dj-logo.png" class="logo" alt="DJSTMUSIC">
 
-  <header>
+<h1>DJSTMUSIC</h1>
 
-    <img
-      src="dj-logo.png"
-      class="logo"
-      alt="DJSTMUSIC Logo">
+<p>Latest Santali Songs, Music & Entertainment</p>
 
-    <h1 class="site-title">
-      DJSTMUSIC
-    </h1>
+</header>
 
-    <p class="tagline">
-      Latest Santali Songs & Entertainment
-    </p>
 
-  </header>
+<div class="buttons">
 
+<a class="btn youtube"
+href="https://www.youtube.com/"
+target="_blank">
+▶ Subscribe on YouTube
+</a>
 
-  <!-- ================= WHATSAPP ================= -->
+<a class="btn whatsapp"
+href="https://wa.me/"
+target="_blank">
+💬 WhatsApp
+</a>
 
-  <a
-    class="whatsapp"
-    href="https://wa.me/YOURNUMBER"
-    target="_blank">
+</div>
 
-    💬 Join WhatsApp
 
-  </a>
+<div class="search">
 
+<input
+type="text"
+id="search"
+placeholder="Search Santali Songs..."
+oninput="searchSongs()">
 
-  <!-- ================= YOUTUBE ================= -->
+<button onclick="searchSongs()">🔍</button>
 
-  <div class="youtube-box">
+</div>
 
-    <div class="youtube-title">
-      📺 Subscribe Our YouTube Channel
-    </div>
 
-    <p class="youtube-text">
-      Latest Santali Songs & Videos
-    </p>
+<div class="container">
 
-    <a
-      href="https://www.youtube.com/@YOURCHANNEL"
-      target="_blank"
-      class="youtube-btn">
+<div class="section-title">
+🎵 Latest Santali Songs
+</div>
 
-      ▶ Subscribe on YouTube
+<div id="songs">
 
-    </a>
+<div class="loading">
+🎵 Songs loading...
+</div>
 
-  </div>
+</div>
 
+</div>
 
-  <main>
 
+<footer>
+© 2026 DJSTMUSIC | All Rights Reserved
+</footer>
 
-    <!-- ================= SEARCH ================= -->
 
-    <div class="search-box">
+<script>
 
-      <input
-        type="search"
-        placeholder="Search Santali Songs..."
-        id="search">
+/* =================================
+   YOUR GITHUB REPOSITORY
+   ================================= */
 
-      <button onclick="searchSongs()">
-        🔍
-      </button>
+const OWNER = "djstmusic";
+const REPO = "djstmusic.github.io";
+const BRANCH = "main";
 
-    </div>
 
+let allSongs = [];
 
-    <!-- ================= CATEGORIES ================= -->
 
-    <div class="categories">
+/* =================================
+   GET FILES FROM GITHUB
+   ================================= */
 
-      <a href="#" class="category cat-blue">
-        🎵 New Santali Songs
-      </a>
+async function getFiles(path = ""){
 
-      <a href="#" class="category cat-green">
-        🎧 Studio Version
-      </a>
+  const url =
+  `https://api.github.com/repos/${OWNER}/${REPO}/contents/${path}?ref=${BRANCH}`;
 
-      <a href="#" class="category cat-yellow">
-        🎶 Traditional Songs
-      </a>
+  const response = await fetch(url);
 
-      <a href="#" class="category cat-pink">
-        🤖 AI Cover Songs
-      </a>
+  if(!response.ok){
+    throw new Error("GitHub API error");
+  }
 
-    </div>
+  return await response.json();
+}
 
 
-    <!-- ================= LATEST SONGS ================= -->
+/* =================================
+   FIND ALL MP3 FILES
+   ROOT + SONGS FOLDER
+   ================================= */
 
-    <h2 class="section-title">
-      🎵 Latest Songs
-    </h2>
+async function findMP3(){
 
+  let result = [];
 
-    <div id="songs">
+  /* ROOT FILES */
 
+  try{
 
-      <!-- SONG 1 -->
+    const rootFiles = await getFiles("");
 
-      <div class="song-card">
+    for(const file of rootFiles){
 
-        <img
-          src="images/song1.jpg"
-          class="song-image"
-          alt="Song">
+      if(
+        file.type === "file" &&
+        file.name.toLowerCase().endsWith(".mp3")
+      ){
 
-        <div class="song-info">
+        result.push(file);
 
-          <div class="song-name">
-            New Santali Song
-          </div>
-
-          <div class="artist">
-            DJSTMUSIC
-          </div>
-
-          <a
-            href="songs/song1.mp3"
-            class="download">
-
-            ⬇ Download
-
-          </a>
-
-        </div>
-
-      </div>
-
-
-      <!-- SONG 2 -->
-
-      <div class="song-card">
-
-        <img
-          src="images/song2.jpg"
-          class="song-image"
-          alt="Song">
-
-        <div class="song-info">
-
-          <div class="song-name">
-            Santali Romantic Song
-          </div>
-
-          <div class="artist">
-            DJSTMUSIC
-          </div>
-
-          <a
-            href="songs/song2.mp3"
-            class="download">
-
-            ⬇ Download
-
-          </a>
-
-        </div>
-
-      </div>
-
-
-    </div>
-
-  </main>
-
-
-  <!-- ================= FOOTER ================= -->
-
-  <footer>
-
-    <strong>DJSTMUSIC</strong>
-
-    <br><br>
-
-    © 2026 DJSTMUSIC. All Rights Reserved.
-
-  </footer>
-
-
-  <!-- ================= SEARCH SCRIPT ================= -->
-
-  <script>
-
-    function searchSongs() {
-
-      const search =
-        document
-        .getElementById("search")
-        .value
-        .toLowerCase();
-
-      const songs =
-        document.querySelectorAll(".song-card");
-
-      songs.forEach(function(song) {
-
-        const text =
-          song.innerText.toLowerCase();
-
-        if (text.includes(search)) {
-
-          song.style.display = "flex";
-
-        } else {
-
-          song.style.display = "none";
-
-        }
-
-      });
+      }
 
     }
 
-    document
-      .getElementById("search")
-      .addEventListener("keyup", searchSongs);
+  }catch(e){
 
-  </script>
+    console.log("Root scan error",e);
 
+  }
+
+
+  /* SONGS FOLDER */
+
+  try{
+
+    const songFiles = await getFiles("songs");
+
+    for(const file of songFiles){
+
+      if(
+        file.type === "file" &&
+        file.name.toLowerCase().endsWith(".mp3")
+      ){
+
+        result.push(file);
+
+      }
+
+    }
+
+  }catch(e){
+
+    console.log("songs folder not found");
+
+  }
+
+
+  return result;
+
+}
+
+
+/* =================================
+   LOAD SONGS
+   ================================= */
+
+async function loadSongs(){
+
+  const box =
+  document.getElementById("songs");
+
+  box.innerHTML = `
+    <div class="loading">
+      🎵 Songs loading...
+    </div>
+  `;
+
+
+  try{
+
+    allSongs = await findMP3();
+
+
+    if(allSongs.length === 0){
+
+      box.innerHTML = `
+        <div class="empty">
+          🎵 Abhi koi MP3 song upload nahi hai.
+          <br><br>
+          GitHub repository me MP3 upload karo.
+        </div>
+      `;
+
+      return;
+
+    }
+
+
+    /* NEWEST FIRST */
+
+    allSongs.reverse();
+
+    displaySongs(allSongs);
+
+
+  }catch(error){
+
+    console.log(error);
+
+    box.innerHTML = `
+      <div class="error">
+        ❌ Songs load nahi ho pa rahe.
+        <br><br>
+        Thodi der baad page refresh karo.
+      </div>
+    `;
+
+  }
+
+}
+
+
+/* =================================
+   SHOW SONGS
+   ================================= */
+
+function displaySongs(songs){
+
+  const box =
+  document.getElementById("songs");
+
+
+  if(songs.length === 0){
+
+    box.innerHTML = `
+      <div class="empty">
+        🔎 Song nahi mila.
+      </div>
+    `;
+
+    return;
+
+  }
+
+
+  box.innerHTML = songs.map(song => {
+
+    const fileURL =
+    `https://raw.githubusercontent.com/${OWNER}/${REPO}/${BRANCH}/${song.path
+      .split("/")
+      .map(x => encodeURIComponent(x))
+      .join("/")}`;
+
+
+    const title =
+    song.name
+    .replace(/\.mp3$/i,"")
+    .replace(/[_-]/g," ");
+
+
+    return `
+
+    <div class="song">
+
+      <img
+      src="dj-logo.png"
+      class="song-img"
+      alt="${title}">
+
+      <div class="song-info">
+
+        <div class="song-title">
+          🎵 ${title}
+        </div>
+
+        <audio
+        controls
+        preload="none"
+        src="${fileURL}">
+        </audio>
+
+        <br>
+
+        <a
+        class="download"
+        href="${fileURL}"
+        download="${song.name}">
+        ⬇ Download
+        </a>
+
+      </div>
+
+    </div>
+
+    `;
+
+  }).join("");
+
+}
+
+
+/* =================================
+   SEARCH
+   ================================= */
+
+function searchSongs(){
+
+  const text =
+  document
+  .getElementById("search")
+  .value
+  .toLowerCase()
+  .trim();
+
+
+  if(!text){
+
+    displaySongs(allSongs);
+
+    return;
+
+  }
+
+
+  const result =
+  allSongs.filter(song =>
+    song.name
+    .toLowerCase()
+    .includes(text)
+  );
+
+
+  displaySongs(result);
+
+}
+
+
+/* =================================
+   START
+   ================================= */
+
+loadSongs();
+
+</script>
 
 </body>
 </html>
