@@ -4,61 +4,84 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>DJST MUSIC | Latest Santali Songs</title>
+<title>DJST MUSIC | Santali DJ Songs</title>
+
+<meta name="description"
+content="DJST MUSIC - Latest Santali DJ Songs, Remixes, Music and Entertainment.">
+
+<meta name="theme-color" content="#0b0b0f">
 
 <style>
 *{
+    margin:0;
+    padding:0;
     box-sizing:border-box;
 }
 
 body{
-    margin:0;
     font-family:Arial,Helvetica,sans-serif;
-    background:#f4f6fa;
-    color:#222;
+    background:#08090d;
+    color:#fff;
+    line-height:1.5;
 }
 
+/* HEADER */
 .header{
-    background:#080808;
+    background:
+    radial-gradient(circle at top,#252525,#08090d 60%);
     text-align:center;
-    padding:30px 15px;
-    border-bottom:4px solid #00aaff;
+    padding:35px 15px 30px;
+    border-bottom:3px solid #e50914;
 }
 
 .logo{
-    width:150px;
-    height:150px;
+    width:130px;
+    height:130px;
     object-fit:cover;
     border-radius:25px;
+    box-shadow:0 0 30px rgba(255,0,0,.35);
 }
 
-.header h1{
-    color:white;
-    margin:15px 0 5px;
-    font-size:32px;
+.site-title{
+    font-size:38px;
+    margin-top:18px;
+    font-weight:800;
+    letter-spacing:2px;
 }
 
-.header p{
-    color:#aaa;
-    font-size:17px;
-    margin:0;
+.site-title span{
+    color:#ff1b1b;
 }
 
-.buttons{
-    text-align:center;
-    padding:25px 10px;
-    background:white;
+.tagline{
+    color:#bbb;
+    margin-top:8px;
+    font-size:16px;
+}
+
+/* BUTTONS */
+.top-buttons{
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:12px;
+    margin-top:25px;
 }
 
 .btn{
-    display:inline-block;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
     text-decoration:none;
-    color:white;
-    padding:15px 28px;
-    margin:7px;
-    border-radius:35px;
-    font-size:18px;
+    padding:13px 22px;
+    border-radius:30px;
+    color:#fff;
     font-weight:bold;
+    transition:.25s;
+}
+
+.btn:hover{
+    transform:translateY(-3px);
 }
 
 .youtube{
@@ -69,134 +92,225 @@ body{
     background:#16c65b;
 }
 
-.search-box{
-    display:flex;
-    max-width:650px;
-    margin:20px auto;
+/* SEARCH */
+.search-area{
+    max-width:850px;
+    margin:30px auto;
     padding:0 15px;
+    display:flex;
+    gap:10px;
 }
 
-.search-box input{
+.search-area input{
     flex:1;
-    padding:17px;
-    border:2px solid #ddd;
-    border-radius:30px 0 0 30px;
+    padding:17px 20px;
+    border-radius:30px;
+    border:2px solid #333;
+    background:#15161c;
+    color:#fff;
     outline:none;
     font-size:16px;
 }
 
-.search-box button{
+.search-area input:focus{
+    border-color:#e50914;
+}
+
+.search-btn{
     border:0;
-    width:65px;
-    border-radius:0 30px 30px 0;
-    background:#159bd3;
-    color:white;
+    width:58px;
+    border-radius:50%;
+    background:#e50914;
+    color:#fff;
     font-size:22px;
 }
 
-.section-title{
-    max-width:900px;
-    margin:20px auto 0;
-    background:#159bd3;
-    color:white;
-    padding:18px 20px;
-    font-size:25px;
-    font-weight:bold;
-    border-radius:15px 15px 0 0;
-}
-
-.songs{
-    max-width:900px;
+/* SECTION */
+.container{
+    max-width:1100px;
     margin:auto;
-    background:white;
+    padding:0 15px 50px;
 }
 
-.song{
+.section-title{
+    font-size:27px;
+    padding:17px 20px;
+    border-radius:12px;
+    margin:20px 0;
+    background:linear-gradient(90deg,#d50000,#7b0000);
+    border-left:5px solid #fff;
+}
+
+/* SONG CARD */
+.song-list{
+    display:grid;
+    gap:15px;
+}
+
+.song-card{
+    background:linear-gradient(145deg,#18191f,#0f1015);
+    border:1px solid #292a31;
+    border-radius:16px;
     padding:18px;
-    border-bottom:1px solid #eee;
+    box-shadow:0 8px 25px rgba(0,0,0,.25);
+}
+
+.song-info{
     display:flex;
     align-items:center;
     gap:15px;
 }
 
-.song-img{
-    width:90px;
-    height:90px;
-    object-fit:cover;
+.song-icon{
+    width:65px;
+    height:65px;
     border-radius:12px;
+    object-fit:cover;
     flex-shrink:0;
 }
 
-.song-info{
-    flex:1;
-}
-
-.song-title{
-    color:#1689b9;
-    font-size:20px;
+.song-name{
+    font-size:19px;
     font-weight:bold;
-    margin-bottom:8px;
+    word-break:break-word;
 }
 
-.song-file{
-    color:#777;
+.song-meta{
+    color:#999;
     font-size:14px;
-    margin-bottom:10px;
-    word-break:break-all;
+    margin-top:4px;
+}
+
+audio{
+    width:100%;
+    margin-top:15px;
+}
+
+.song-actions{
+    display:flex;
+    gap:10px;
+    margin-top:12px;
 }
 
 .download{
     display:inline-block;
-    background:#1557ff;
-    color:white;
     text-decoration:none;
-    padding:9px 16px;
-    border-radius:20px;
+    background:#e50914;
+    color:white;
+    padding:10px 17px;
+    border-radius:8px;
     font-weight:bold;
 }
 
-.player{
-    width:100%;
-    margin-top:8px;
+.download:hover{
+    background:#ff2020;
 }
 
-.loading,
-.empty,
-.error{
+/* LOADING */
+.loading{
     text-align:center;
-    padding:35px 15px;
-    color:#777;
+    padding:35px;
+    color:#aaa;
+}
+
+.empty{
+    text-align:center;
+    padding:40px 20px;
+    background:#111217;
+    border-radius:15px;
+    color:#aaa;
+}
+
+/* SOCIAL */
+.social-section{
+    margin-top:45px;
+}
+
+.social-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+    gap:12px;
+}
+
+.social{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:15px;
+    border-radius:12px;
+    text-decoration:none;
+    color:#fff;
+    background:#15161c;
+    border:1px solid #292a31;
+    transition:.25s;
+}
+
+.social:hover{
+    transform:translateY(-3px);
+    border-color:#e50914;
+}
+
+.social-icon{
+    width:38px;
+    height:38px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border-radius:50%;
+    font-weight:bold;
     font-size:18px;
 }
 
-.footer{
-    margin-top:30px;
-    background:#111;
-    color:#aaa;
+.fb{background:#1877f2;}
+.ig{background:linear-gradient(45deg,#ffcc00,#ff0069,#833ab4);}
+.x{background:#000;border:1px solid #444;}
+.yt{background:#ff0000;}
+.wa{background:#16c65b;}
+
+/* FOOTER */
+footer{
     text-align:center;
-    padding:25px 10px;
+    padding:30px 15px;
+    background:#050609;
+    border-top:1px solid #222;
+    color:#777;
 }
 
+footer strong{
+    color:#fff;
+}
+
+/* MOBILE */
 @media(max-width:600px){
-    .header h1{
-        font-size:27px;
+
+    .site-title{
+        font-size:29px;
     }
 
-    .song{
-        padding:15px 10px;
-    }
-
-    .song-img{
-        width:75px;
-        height:75px;
-    }
-
-    .song-title{
-        font-size:17px;
+    .logo{
+        width:110px;
+        height:110px;
     }
 
     .section-title{
-        font-size:21px;
+        font-size:22px;
+    }
+
+    .song-card{
+        padding:14px;
+    }
+
+    .song-name{
+        font-size:17px;
+    }
+
+    .song-icon{
+        width:58px;
+        height:58px;
+    }
+
+    .search-area{
+        padding:0 12px;
     }
 }
 </style>
@@ -207,122 +321,218 @@ body{
 <!-- HEADER -->
 <header class="header">
 
-    <img src="dj-logo.png" class="logo" alt="DJST MUSIC">
+    <img src="dj-logo.png"
+         class="logo"
+         alt="DJST MUSIC Logo">
 
-    <h1>DJST MUSIC</h1>
+    <h1 class="site-title">
+        DJST <span>MUSIC</span>
+    </h1>
 
-    <p>Latest Santali Songs, Music & Entertainment</p>
+    <p class="tagline">
+        Latest Santali Songs, DJ Remixes, Music & Entertainment
+    </p>
 
+    <div class="top-buttons">
+
+        <a class="btn youtube"
+           href="https://www.youtube.com/@djrabirajhembramdeb idanga"
+           target="_blank">
+           ▶ Subscribe on YouTube
+        </a>
+
+        <a class="btn whatsapp"
+           href="https://wa.me/918918642452"
+           target="_blank">
+           💬 WhatsApp
+        </a>
+
+    </div>
 </header>
 
 
-<!-- SOCIAL BUTTONS -->
-<div class="buttons">
-
-    <!-- Apna YouTube channel link yahan lagaye -->
-    <a class="btn youtube"
-       href="https://www.youtube.com/"
-       target="_blank">
-       ▶ Subscribe on YouTube
-    </a>
-
-    <!-- Apna WhatsApp number yahan lagaye -->
-    <a class="btn whatsapp"
-       href="https://wa.me/918918642452"
-       target="_blank">
-       💬 WhatsApp
-    </a>
-
-</div>
-
-
 <!-- SEARCH -->
-<div class="search-box">
+<div class="search-area">
 
     <input
-        type="text"
-        id="search"
+        type="search"
+        id="searchInput"
         placeholder="Search Santali Songs..."
-        onkeyup="searchSongs()">
+        autocomplete="off">
 
-    <button>🔍</button>
+    <button class="search-btn" onclick="searchSongs()">🔍</button>
 
 </div>
 
 
-<!-- SONG SECTION -->
-<div class="section-title">
-    🎵 Latest Santali Songs
-</div>
+<!-- SONGS -->
+<main class="container">
 
-<div class="songs" id="songs">
+    <h2 class="section-title">
+        🎵 Latest Santali Songs
+    </h2>
 
-    <div class="loading">
-        🎵 Songs loading...
+    <div id="songList" class="song-list">
+
+        <div class="loading">
+            ⏳ Loading latest songs...
+        </div>
+
     </div>
 
-</div>
+
+    <!-- SOCIAL MEDIA -->
+    <section class="social-section">
+
+        <h2 class="section-title">
+            🌐 Follow DJ Rabi Raj Hembram
+        </h2>
+
+        <div class="social-grid">
+
+            <a class="social"
+               href="https://facebook.com/djrabi.raj"
+               target="_blank">
+
+                <span class="social-icon fb">f</span>
+
+                <div>
+                    <strong>Facebook</strong><br>
+                    <small>@djrabi.raj</small>
+                </div>
+
+            </a>
+
+
+            <a class="social"
+               href="https://instagram.com/djrabi.raj"
+               target="_blank">
+
+                <span class="social-icon ig">◎</span>
+
+                <div>
+                    <strong>Instagram</strong><br>
+                    <small>@djrabi.raj</small>
+                </div>
+
+            </a>
+
+
+            <a class="social"
+               href="https://twitter.com/Rabirajhembram"
+               target="_blank">
+
+                <span class="social-icon x">𝕏</span>
+
+                <div>
+                    <strong>Twitter / X</strong><br>
+                    <small>@Rabirajhembram</small>
+                </div>
+
+            </a>
+
+
+            <a class="social"
+               href="https://www.youtube.com/@djrabirajhembramdeb idanga"
+               target="_blank">
+
+                <span class="social-icon yt">▶</span>
+
+                <div>
+                    <strong>YouTube</strong><br>
+                    <small>DJ Rabi Raj Hembram Debidanga</small>
+                </div>
+
+            </a>
+
+
+            <a class="social"
+               href="https://wa.me/918918642452"
+               target="_blank">
+
+                <span class="social-icon wa">◉</span>
+
+                <div>
+                    <strong>WhatsApp</strong><br>
+                    <small>Chat with DJ Rabi Raj</small>
+                </div>
+
+            </a>
+
+        </div>
+
+    </section>
+
+</main>
 
 
 <!-- FOOTER -->
-<footer class="footer">
+<footer>
 
-    © 2026 DJST MUSIC<br>
-    Latest Santali Songs & Music
+    <p>
+        © 2026 <strong>DJST MUSIC</strong>
+    </p>
+
+    <p>
+        Santali DJ Songs • Music • Remixes
+    </p>
 
 </footer>
 
 
 <script>
 
-/* =====================================================
-   GITHUB SETTINGS
-   ===================================================== */
+/*
+====================================================
+ GITHUB MUSIC AUTO LOADER
+====================================================
+*/
 
 const GITHUB_USER = "djstmusic";
 const GITHUB_REPO = "djstmusic.github.io";
 const GITHUB_BRANCH = "main";
 
+/*
+ Agar MP3 kisi folder me upload karna ho,
+ example:
+ music/song.mp3
 
-/* =====================================================
-   MP3 SONG AUTOMATICALLY LOAD
-   ===================================================== */
+ to yahan "music" likhein.
+ Root me MP3 upload kar rahe hain to "" hi rakhein.
+*/
+const MUSIC_FOLDER = "";
 
+
+/* SONG DATA */
 let allSongs = [];
 
 
+/* LOAD SONGS */
 async function loadSongs(){
 
-    const songsBox = document.getElementById("songs");
+    const songList = document.getElementById("songList");
 
     try{
 
-        const api =
-        `https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/contents/?ref=${GITHUB_BRANCH}`;
+        let apiUrl =
+        `https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/contents/${MUSIC_FOLDER}?ref=${GITHUB_BRANCH}`;
 
-        const response = await fetch(api);
+        const response = await fetch(apiUrl);
 
         if(!response.ok){
-            throw new Error("GitHub API error");
+            throw new Error("GitHub files load nahi ho rahe.");
         }
 
         const files = await response.json();
 
-        allSongs = files.filter(file =>
-            file.type === "file" &&
-            file.name.toLowerCase().endsWith(".mp3")
-        );
-
-        if(allSongs.length === 0){
-
-            songsBox.innerHTML = `
-                <div class="empty">
-                    🎵 Abhi koi song upload nahi hai.
-                </div>
-            `;
-
-            return;
-        }
+        allSongs = files
+            .filter(file =>
+                file.type === "file" &&
+                file.name.toLowerCase().endsWith(".mp3")
+            )
+            .sort((a,b) =>
+                b.name.localeCompare(a.name)
+            );
 
         displaySongs(allSongs);
 
@@ -330,128 +540,138 @@ async function loadSongs(){
 
         console.error(error);
 
-        songsBox.innerHTML = `
-            <div class="error">
-                ❌ Songs load nahi ho pa rahe.<br>
-                Thodi der baad page refresh karein.
+        songList.innerHTML = `
+            <div class="empty">
+                ❌ Songs load nahi ho pa rahe.<br><br>
+                GitHub repository ya MP3 file check karein.
             </div>
         `;
-
     }
-
 }
 
 
-/* =====================================================
-   DISPLAY SONGS
-   ===================================================== */
-
+/* DISPLAY SONGS */
 function displaySongs(songs){
 
-    const songsBox = document.getElementById("songs");
+    const songList = document.getElementById("songList");
 
-    songsBox.innerHTML = "";
+    if(songs.length === 0){
 
-    songs.forEach(song => {
+        songList.innerHTML = `
+            <div class="empty">
+                🎵 Abhi koi song upload nahi hai.
+            </div>
+        `;
 
-        const title = song.name
-            .replace(".mp3","")
-            .replace(/_/g," ")
-            .replace(/-/g," ");
+        return;
+    }
 
-        const rawURL =
-        `https://raw.githubusercontent.com/${GITHUB_USER}/${GITHUB_REPO}/${GITHUB_BRANCH}/${encodeURIComponent(song.name)}`;
 
-        const div = document.createElement("div");
+    songList.innerHTML = songs.map(song => {
 
-        div.className = "song";
+        const encodedName =
+            encodeURIComponent(song.name);
 
-        div.innerHTML = `
+        const audioUrl =
+            `https://raw.githubusercontent.com/${GITHUB_USER}/${GITHUB_REPO}/${GITHUB_BRANCH}/${MUSIC_FOLDER ? MUSIC_FOLDER + "/" : ""}${encodedName}`;
 
-            <img
-                src="dj-logo.png"
-                class="song-img"
-                alt="${title}">
+        const title =
+            song.name
+            .replace(/\.mp3$/i,"")
+            .replace(/[_-]+/g," ")
+            .replace(/\s+/g," ")
+            .trim();
+
+        return `
+
+        <article class="song-card">
 
             <div class="song-info">
 
-                <div class="song-title">
-                    ${title}
+                <img
+                    src="dj-logo.png"
+                    class="song-icon"
+                    alt="Song">
+
+                <div>
+
+                    <div class="song-name">
+                        ${escapeHTML(title)}
+                    </div>
+
+                    <div class="song-meta">
+                        🎧 DJST MUSIC
+                    </div>
+
                 </div>
 
-                <div class="song-file">
-                    ${song.name}
-                </div>
+            </div>
 
-                <audio
-                    class="player"
-                    controls
-                    preload="none">
-                    <source src="${rawURL}" type="audio/mpeg">
-                </audio>
 
-                <br>
+            <audio
+                controls
+                preload="none"
+                src="${audioUrl}">
+            </audio>
+
+
+            <div class="song-actions">
 
                 <a
                     class="download"
-                    href="${rawURL}"
-                    download="${song.name}">
-                    ⬇ Download MP3
+                    href="${audioUrl}"
+                    download>
+                    ⬇ Download
                 </a>
 
             </div>
+
+        </article>
+
         `;
 
-        songsBox.appendChild(div);
-
-    });
-
+    }).join("");
 }
 
 
-/* =====================================================
-   SEARCH SONG
-   ===================================================== */
-
+/* SEARCH */
 function searchSongs(){
 
-    const search =
-    document.getElementById("search")
-    .value
-    .toLowerCase()
-    .trim();
+    const query =
+        document
+        .getElementById("searchInput")
+        .value
+        .toLowerCase()
+        .trim();
 
-    if(!search){
+    const filtered =
+        allSongs.filter(song =>
+            song.name.toLowerCase().includes(query)
+        );
 
-        displaySongs(allSongs);
-
-        return;
-    }
-
-    const result = allSongs.filter(song =>
-        song.name.toLowerCase().includes(search)
-    );
-
-    if(result.length === 0){
-
-        document.getElementById("songs").innerHTML = `
-            <div class="empty">
-                🔎 Song nahi mila.
-            </div>
-        `;
-
-        return;
-    }
-
-    displaySongs(result);
-
+    displaySongs(filtered);
 }
 
 
-/* =====================================================
-   START
-   ===================================================== */
+/* LIVE SEARCH */
+document
+.getElementById("searchInput")
+.addEventListener("input", searchSongs);
 
+
+/* SECURITY */
+function escapeHTML(text){
+
+    return text
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;")
+        .replace(/"/g,"&quot;")
+        .replace(/'/g,"&#039;");
+}
+
+
+/* START */
 loadSongs();
 
 </script>
