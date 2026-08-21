@@ -1,40 +1,397 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>DJSTMUSIC | Santali Music</title>
+<title>DJST MUSIC | Santali Music</title>
 
-  <meta name="description"
-        content="DJSTMUSIC - Latest Santali Songs, Music & Entertainment">
+<style>
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
 
-  <style>
+body{
+  font-family:Arial,sans-serif;
+  background:#f5f7fa;
+  color:#222;
+}
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+header{
+  background:linear-gradient(135deg,#050505,#151515);
+  text-align:center;
+  padding:25px 15px;
+  border-bottom:4px solid #00aaff;
+}
+
+.logo{
+  width:150px;
+  height:150px;
+  object-fit:cover;
+  border-radius:20px;
+  margin-bottom:12px;
+}
+
+header h1{
+  color:white;
+  font-size:32px;
+}
+
+header p{
+  color:#bbb;
+  margin-top:8px;
+}
+
+.container{
+  max-width:900px;
+  margin:auto;
+  padding:20px 15px 100px;
+}
+
+.buttons{
+  display:flex;
+  gap:12px;
+  flex-wrap:wrap;
+  justify-content:center;
+  margin-bottom:25px;
+}
+
+.btn{
+  display:inline-block;
+  text-decoration:none;
+  color:white;
+  padding:13px 22px;
+  border-radius:30px;
+  font-weight:bold;
+}
+
+.youtube{
+  background:#e60000;
+}
+
+.whatsapp{
+  background:#19b955;
+}
+
+.search{
+  display:flex;
+  gap:10px;
+  margin-bottom:25px;
+}
+
+.search input{
+  flex:1;
+  padding:15px 18px;
+  border:2px solid #ddd;
+  border-radius:30px;
+  font-size:16px;
+  outline:none;
+}
+
+.search button{
+  width:55px;
+  border:0;
+  border-radius:50%;
+  background:#149ddd;
+  color:white;
+  font-size:22px;
+}
+
+.title{
+  background:#159bd3;
+  color:white;
+  padding:15px;
+  border-radius:10px;
+  margin:20px 0 15px;
+}
+
+.song{
+  background:white;
+  border-radius:15px;
+  padding:15px;
+  margin-bottom:15px;
+  box-shadow:0 3px 12px rgba(0,0,0,.08);
+}
+
+.song-top{
+  display:flex;
+  align-items:center;
+  gap:15px;
+}
+
+.song img{
+  width:75px;
+  height:75px;
+  object-fit:cover;
+  border-radius:12px;
+}
+
+.song-info{
+  flex:1;
+}
+
+.song-name{
+  font-size:18px;
+  font-weight:bold;
+  color:#1788b7;
+  word-break:break-word;
+}
+
+audio{
+  width:100%;
+  margin-top:12px;
+}
+
+.actions{
+  display:flex;
+  gap:10px;
+  margin-top:12px;
+}
+
+.download{
+  background:#1655ff;
+  color:white;
+  text-decoration:none;
+  padding:10px 18px;
+  border-radius:8px;
+  font-weight:bold;
+}
+
+#loading{
+  text-align:center;
+  padding:25px;
+  color:#777;
+}
+
+footer{
+  background:#111;
+  color:#aaa;
+  text-align:center;
+  padding:25px 10px;
+  margin-top:30px;
+}
+
+@media(max-width:600px){
+  header h1{
+    font-size:25px;
+  }
+
+  .song img{
+    width:65px;
+    height:65px;
+  }
+
+  .song-name{
+    font-size:16px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+
+  <!-- Apna logo -->
+  <img src="dj-logo.png" class="logo">
+
+  <h1>DJST MUSIC</h1>
+  <p>Latest Santali Songs, Music & Entertainment</p>
+
+</header>
+
+<div class="container">
+
+  <div class="buttons">
+
+    <!-- YouTube link yahan apna link lagao -->
+    <a class="btn youtube"
+       href="https://www.youtube.com/"
+       target="_blank">
+       ▶ Subscribe on YouTube
+    </a>
+
+    <!-- WhatsApp link yahan apna link lagao -->
+    <a class="btn whatsapp"
+       href="https://wa.me/"
+       target="_blank">
+       💬 WhatsApp
+    </a>
+
+  </div>
+
+  <div class="search">
+    <input
+      type="text"
+      id="search"
+      placeholder="Search Santali Songs..."
+      oninput="searchSongs()">
+
+    <button>🔍</button>
+  </div>
+
+  <h2 class="title">🎵 Latest Santali Songs</h2>
+
+  <div id="loading">
+    Songs loading...
+  </div>
+
+  <div id="songs"></div>
+
+</div>
+
+<footer>
+  © 2026 DJST MUSIC • All Rights Reserved
+</footer>
+
+<script>
+
+const username = "djstmusic";
+const repo = "djstmusic.github.io";
+
+const songFolder = "songs";
+
+const logo = "dj-logo.png";
+
+let allSongs = [];
+
+
+/* GitHub se songs automatically read karega */
+
+async function loadSongs(){
+
+  const loading = document.getElementById("loading");
+
+  try{
+
+    const url =
+      `https://api.github.com/repos/${username}/${repo}/contents/${songFolder}`;
+
+    const response = await fetch(url);
+
+    if(!response.ok){
+      throw new Error("Songs folder not found");
     }
 
-    html {
-      scroll-behavior: smooth;
-    }
+    const files = await response.json();
 
-    body {
-      font-family: Arial, sans-serif;
-      background: #f5f7fa;
-      color: #222;
-    }
+    allSongs = files.filter(file =>
+      file.type === "file" &&
+      file.name.toLowerCase().endsWith(".mp3")
+    );
 
-    /* ================= HEADER ================= */
+    loading.style.display = "none";
 
-    header {
-      background: linear-gradient(135deg, #050505, #181818);
-      text-align: center;
-      padding: 25px 15px 30px;
-      border-bottom: 4px solid #00aaff;
-    }
+    showSongs(allSongs);
+
+  }catch(error){
+
+    loading.innerHTML =
+      "🎵 Abhi koi song upload nahi hai.";
+
+    console.log(error);
+
+  }
+
+}
+
+
+/* Songs display */
+
+function showSongs(songs){
+
+  const box = document.getElementById("songs");
+
+  box.innerHTML = "";
+
+  if(songs.length === 0){
+
+    box.innerHTML =
+      "<p style='text-align:center;padding:30px'>No songs found.</p>";
+
+    return;
+  }
+
+
+  songs.forEach(song => {
+
+    const audioURL =
+      `https://${username}.github.io/${repo}/${songFolder}/${encodeURIComponent(song.name)}`;
+
+    const div = document.createElement("div");
+
+    div.className = "song";
+
+    div.innerHTML = `
+
+      <div class="song-top">
+
+        <img src="${logo}" alt="Song">
+
+        <div class="song-info">
+
+          <div class="song-name">
+            ${song.name}
+          </div>
+
+        </div>
+
+      </div>
+
+      <audio controls preload="none">
+        <source src="${audioURL}" type="audio/mpeg">
+      </audio>
+
+      <div class="actions">
+
+        <a
+          class="download"
+          href="${audioURL}"
+          download>
+          ⬇ Download
+        </a>
+
+      </div>
+
+    `;
+
+    box.appendChild(div);
+
+  });
+
+}
+
+
+/* Search */
+
+function searchSongs(){
+
+  const text =
+    document
+    .getElementById("search")
+    .value
+    .toLowerCase();
+
+  const filtered =
+    allSongs.filter(song =>
+      song.name.toLowerCase().includes(text)
+    );
+
+  showSongs(filtered);
+
+}
+
+
+/* Start */
+
+loadSongs();
+
+</script>
+
+</body>
+</html>    }
 
     .logo {
       width: 230px;
