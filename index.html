@@ -5,7 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>DJSTMUSIC | Santali DJ Songs</title>
-  <meta name="description" content="DJSTMUSIC - Latest Santali DJ Songs, DJ Remixes, Music & Entertainment by DJ Rabi Raj Hembram Debidanga">
+
+  <meta name="description"
+        content="DJSTMUSIC - Latest Santali DJ Songs, DJ Remixes, Music & Entertainment by DJ Rabi Raj Hembram Debidanga">
 
   <style>
     * {
@@ -16,25 +18,420 @@
 
     body {
       font-family: Arial, sans-serif;
-      background: #f4f6f9;
-      color: #171717;
+      background: #f3f5f8;
+      color: #151515;
     }
 
-    /* HEADER */
+    /* ================= HEADER ================= */
+
     header {
-      background: linear-gradient(135deg, #050505, #151515);
+      background:
+        radial-gradient(circle at center, #242424 0%, #090909 60%, #000000 100%);
       color: white;
       text-align: center;
-      padding: 35px 15px 40px;
+      padding: 35px 15px 45px;
       border-bottom: 4px solid #e60000;
     }
 
     .logo-box {
-      width: 190px;
-      height: 190px;
-      margin: 0 auto 20px;
+      width: 210px;
+      height: 210px;
+      margin: 0 auto 22px;
       display: flex;
+      justify-content: center;
       align-items: center;
+    }
+
+    .logo {
+      width: 210px;
+      height: 210px;
+      display: block;
+      object-fit: contain;
+      border-radius: 50%;
+      box-shadow:
+        0 0 15px rgba(255, 0, 0, 0.8),
+        0 0 35px rgba(255, 0, 0, 0.35);
+    }
+
+    header h1 {
+      font-size: 34px;
+      font-weight: 900;
+      letter-spacing: 2px;
+      margin-bottom: 10px;
+    }
+
+    header p {
+      color: #cccccc;
+      font-size: 17px;
+    }
+
+    /* ================= SEARCH ================= */
+
+    .search-area {
+      max-width: 900px;
+      margin: 25px auto;
+      padding: 0 18px;
+      display: flex;
+      gap: 12px;
+    }
+
+    #search {
+      flex: 1;
+      height: 58px;
+      padding: 0 22px;
+      border: 2px solid #ddd;
+      border-radius: 35px;
+      font-size: 17px;
+      outline: none;
+      background: white;
+    }
+
+    #search:focus {
+      border-color: #e60000;
+    }
+
+    .search-btn {
+      width: 60px;
+      height: 60px;
+      border: none;
+      border-radius: 50%;
+      background: #e60000;
+      color: white;
+      font-size: 25px;
+      cursor: pointer;
+    }
+
+    /* ================= MAIN ================= */
+
+    main {
+      max-width: 1000px;
+      margin: auto;
+      padding: 0 18px 50px;
+    }
+
+    .section-title {
+      margin: 25px 0 20px;
+      padding: 20px 25px;
+      color: white;
+      font-size: 24px;
+      font-weight: bold;
+      border-radius: 18px;
+      background: linear-gradient(135deg, #f00000, #8b0000);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    }
+
+    /* ================= SONG ================= */
+
+    .song-card {
+      background: white;
+      margin: 18px 0;
+      padding: 22px;
+      border-radius: 20px;
+      border-left: 6px solid #e60000;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.10);
+    }
+
+    .song-card h2 {
+      font-size: 20px;
+      margin-bottom: 17px;
+      line-height: 1.35;
+    }
+
+    audio {
+      width: 100%;
+      height: 48px;
+      display: block;
+    }
+
+    .download {
+      display: inline-block;
+      margin-top: 15px;
+      padding: 13px 20px;
+      background: #111;
+      color: white;
+      text-decoration: none;
+      border-radius: 10px;
+      font-size: 16px;
+      font-weight: bold;
+    }
+
+    .download:hover {
+      background: #e60000;
+    }
+
+    .no-song {
+      display: none;
+      text-align: center;
+      padding: 35px;
+      color: #777;
+      font-size: 18px;
+    }
+
+    /* ================= FOOTER ================= */
+
+    footer {
+      background: #080808;
+      color: white;
+      text-align: center;
+      padding: 32px 15px;
+      border-top: 3px solid #e60000;
+    }
+
+    footer h2 {
+      font-size: 25px;
+      margin-bottom: 8px;
+    }
+
+    footer p {
+      color: #aaa;
+      margin: 6px 0;
+    }
+
+    /* ================= MOBILE ================= */
+
+    @media (max-width: 600px) {
+
+      header {
+        padding: 28px 12px 38px;
+      }
+
+      .logo-box {
+        width: 175px;
+        height: 175px;
+      }
+
+      .logo {
+        width: 175px;
+        height: 175px;
+      }
+
+      header h1 {
+        font-size: 28px;
+      }
+
+      header p {
+        font-size: 15px;
+      }
+
+      .search-area {
+        padding: 0 20px;
+      }
+
+      #search {
+        height: 55px;
+        font-size: 15px;
+      }
+
+      .search-btn {
+        width: 55px;
+        height: 55px;
+      }
+
+      .section-title {
+        font-size: 20px;
+        padding: 18px;
+      }
+
+      .song-card {
+        padding: 18px;
+      }
+
+      .song-card h2 {
+        font-size: 18px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ================= HEADER ================= -->
+
+  <header>
+
+    <div class="logo-box">
+      <img
+        src="./logo.png"
+        alt="DJSTMUSIC Professional DJ Logo"
+        class="logo"
+        onerror="this.style.display='none';"
+      >
+    </div>
+
+    <h1>DJSTMUSIC</h1>
+
+    <p>
+      Latest Santali Songs, Music & Entertainment
+    </p>
+
+  </header>
+
+
+  <!-- ================= SEARCH ================= -->
+
+  <div class="search-area">
+
+    <input
+      type="search"
+      id="search"
+      placeholder="Search Santali DJ Songs..."
+      onkeyup="searchSongs()"
+    >
+
+    <button
+      class="search-btn"
+      onclick="searchSongs()">
+      🔍
+    </button>
+
+  </div>
+
+
+  <!-- ================= SONGS ================= -->
+
+  <main>
+
+    <div class="section-title">
+      🎵 Latest Santali DJ Songs
+    </div>
+
+
+    <!-- SONG 1 -->
+
+    <div class="song-card">
+
+      <h2>
+        🎧 LOWA BAHA DJ RABI RAJ HEMBRAM
+      </h2>
+
+      <audio controls preload="metadata">
+        <source
+          src="./1 LOWA BAHA DJ RABI RAJ HEMBRAM .mp3"
+          type="audio/mpeg">
+      </audio>
+
+      <a
+        class="download"
+        href="./1 LOWA BAHA DJ RABI RAJ HEMBRAM .mp3"
+        download>
+        ⬇ Download MP3
+      </a>
+
+    </div>
+
+
+    <!-- SONG 2 -->
+
+    <div class="song-card">
+
+      <h2>
+        🎧 NAGIN BALA TATOO DJ RABI RAJ HEMBRAM
+      </h2>
+
+      <audio controls preload="metadata">
+        <source
+          src="./NAGIN BALA TATOO DJ RABI RAJ HEMBRAM .mp3"
+          type="audio/mpeg">
+      </audio>
+
+      <a
+        class="download"
+        href="./NAGIN BALA TATOO DJ RABI RAJ HEMBRAM .mp3"
+        download>
+        ⬇ Download MP3
+      </a>
+
+    </div>
+
+
+    <div
+      class="no-song"
+      id="noSong">
+      🎵 Song nahi mila.
+    </div>
+
+  </main>
+
+
+  <!-- ================= FOOTER ================= -->
+
+  <footer>
+
+    <h2>DJSTMUSIC</h2>
+
+    <p>
+      Latest Santali DJ Songs & DJ Remixes
+    </p>
+
+    <p>
+      DJ Rabi Raj Hembram Debidanga
+    </p>
+
+    <p>
+      © 2026 DJSTMUSIC • All Rights Reserved
+    </p>
+
+  </footer>
+
+
+  <!-- ================= SEARCH SCRIPT ================= -->
+
+  <script>
+
+    function searchSongs() {
+
+      const searchText =
+        document
+        .getElementById("search")
+        .value
+        .toLowerCase()
+        .trim();
+
+      const songs =
+        document.querySelectorAll(".song-card");
+
+      let found = 0;
+
+      songs.forEach(function(song) {
+
+        const title =
+          song
+          .querySelector("h2")
+          .innerText
+          .toLowerCase();
+
+        if (title.includes(searchText)) {
+
+          song.style.display = "block";
+          found++;
+
+        } else {
+
+          song.style.display = "none";
+
+        }
+
+      });
+
+      const noSong =
+        document.getElementById("noSong");
+
+      if (found === 0) {
+
+        noSong.style.display = "block";
+
+      } else {
+
+        noSong.style.display = "none";
+
+      }
+
+    }
+
+  </script>
+
+</body>
+</html>      align-items: center;
       justify-content: center;
     }
 
