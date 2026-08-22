@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="DJSTMUSIC - Latest Santali DJ Songs, DJ Remixes, Music & Entertainment.">
+<meta name="theme-color" content="#050505">
+<title>DJSTMUSIC • Latest Santali DJ Songs</title>
+<style>
+:root{--red:#ff0808;--dark:#050505;--card:#111;--line:#3e0000}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:Arial,Helvetica,sans-serif;background:#000;color:#fff;min-height:100vh}
+body:before{content:"";position:fixed;inset:0;z-index:-2;background:radial-gradient(circle at 50% -10%,#500000 0,#160000 22%,#050505 52%,#000 100%)}
+body:after{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:.25;background:repeating-linear-gradient(135deg,transparent 0 80px,rgba(255,0,0,.22) 81px 83px,transparent 84px 150px)}
+a{text-decoration:none;color:inherit}
+.top-social{background:linear-gradient(90deg,#080808,#210000,#080808);border-bottom:1px solid #4c0000;box-shadow:0 0 25px rgba(255,0,0,.18)}
+.top-social-inner{max-width:1200px;margin:auto;padding:9px 15px;display:flex;gap:9px;align-items:center;justify-content:center;flex-wrap:wrap}
+.social-btn{padding:8px 13px;border:1px solid #5c0000;border-radius:999px;background:#111;font-size:13px;font-weight:800}
+.social-btn:hover{border-color:var(--red);box-shadow:0 0 12px rgba(255,0,0,.35);color:#fff}
+.sub-badge{padding:8px 13px;border-radius:999px;background:#e60000;font-weight:900;box-shadow:0 0 16px rgba(255,0,0,.35)}
+header{position:sticky;top:0;z-index:100;background:rgba(0,0,0,.92);backdrop-filter:blur(12px);border-bottom:1px solid #330000}
+.nav{max-width:1200px;margin:auto;min-height:66px;padding:10px 15px;display:flex;align-items:center;justify-content:space-between}
+.brand{font-size:25px;font-weight:1000;letter-spacing:1px}.brand span{color:var(--red);text-shadow:0 0 14px red}
+.navlinks{display:flex;gap:25px;font-weight:800}.navlinks a:hover{color:var(--red)}
+.hero{max-width:1200px;margin:14px auto;padding:0 15px}
+.hero img{width:100%;display:block;border-radius:20px;border:1px solid #ff1616;box-shadow:0 0 25px rgba(255,0,0,.45),0 0 80px rgba(255,0,0,.12)}
+.container{max-width:1100px;margin:auto;padding:15px 15px 60px}
+.welcome{margin:18px 0;padding:28px;text-align:center;border:1px solid #480000;border-radius:22px;background:linear-gradient(145deg,#171717,#050505);box-shadow:0 12px 35px #000}
+.welcome h1{font-size:32px;margin-bottom:10px}.red{color:var(--red);text-shadow:0 0 12px rgba(255,0,0,.5)}
+.welcome p{color:#c9c9c9;line-height:1.7}
+.title{margin:22px 0;padding:18px 20px;border-radius:17px;background:linear-gradient(100deg,#ff0808,#8d0000,#ff0808);box-shadow:0 7px 28px rgba(255,0,0,.28)}
+.title h2{font-size:23px}
+.search{margin:18px 0}.search input{width:100%;padding:16px;border-radius:12px;border:1px solid #5d0000;background:#101010;color:#fff;font-size:16px;outline:none}.search input:focus{border-color:var(--red);box-shadow:0 0 15px rgba(255,0,0,.25)}
+.song{margin:20px 0;padding:22px;border:1px solid #4a0000;border-left:5px solid var(--red);border-radius:20px;background:linear-gradient(145deg,#171717,#060606);box-shadow:0 12px 35px rgba(0,0,0,.65)}
+.song:hover{border-color:#ff2020;transform:translateY(-2px)}
+.num{color:#ff2525;font-weight:900;margin-bottom:9px}.song h3{font-size:21px;margin-bottom:7px}.meta{color:#999;margin-bottom:13px}
+audio{width:100%;margin:7px 0 17px}
+.actions{display:grid;grid-template-columns:1fr 1fr;gap:12px}.btn{min-height:52px;border:0;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:900;cursor:pointer}.download{background:#151515;border:1px solid #555}.download:hover{border-color:var(--red)}.share{background:linear-gradient(135deg,#ff0808,#a60000);color:#fff}.share:hover{box-shadow:0 0 20px rgba(255,0,0,.4)}
+.about{margin-top:28px;padding:27px;border:1px solid #450000;border-radius:20px;background:linear-gradient(145deg,#171717,#060606)}.about h2{font-size:27px;margin-bottom:12px}.about p{color:#bbb;line-height:1.8}
+.follow{margin-top:22px;padding:22px;text-align:center;border:1px solid #450000;border-radius:20px;background:#090909}.follow h2{margin-bottom:14px}.follow-grid{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}.follow a{padding:13px 18px;border-radius:999px;background:#151515;border:1px solid #520000;font-weight:900}.follow a:hover{background:#d80000}
+footer{text-align:center;padding:28px 15px;color:#999;background:#030303;border-top:1px solid #350000}footer b{color:var(--red)}
+.no-result{text-align:center;color:#aaa;padding:25px;display:none}
+@media(max-width:700px){.top-social-inner{justify-content:flex-start;overflow-x:auto;flex-wrap:nowrap}.social-btn,.sub-badge{white-space:nowrap}.nav{flex-direction:column;gap:11px}.navlinks{gap:22px}.hero{padding:0 8px}.hero img{border-radius:12px}.welcome h1{font-size:25px}.song h3{font-size:18px}.actions{grid-template-columns:1fr}.title h2{font-size:20px}}
+</style>
+</head>
+<body>
+
+<!-- TOP SOCIAL + SUBSCRIBER AREA -->
+<div class="top-social">
+  <div class="top-social-inner">
+    <a class="social-btn" href="#" target="_blank" rel="noopener">🔵 Facebook</a>
+    <a class="social-btn" href="#" target="_blank" rel="noopener">🟢 WhatsApp</a>
+    <a class="social-btn" href="#" target="_blank" rel="noopener">▶️ YouTube</a>
+    <a class="social-btn" href="#" target="_blank" rel="noopener">📷 Instagram</a>
+    <span class="sub-badge">🔔 Subscribers: <span id="subscriberCount">10K+</span></span>
+  </div>
+</div>
+
+<header>
+  <nav class="nav">
+    <a class="brand" href="#home"><span>DJST</span>MUSIC</a>
+    <div class="navlinks">
+      <a href="#home">Home</a>
+      <a href="#songs">Songs</a>
+      <a href="#about">About</a>
+    </div>
+  </nav>
+</header>
+
+<main id="home">
+  <!-- DJ LOGO / BANNER IS THE FIRST MAIN ITEM -->
+  <section class="hero">
+    <img src="djstmusic-banner.png" alt="DJSTMUSIC DJ Logo and Latest Santali Songs">
+  </section>
+
+  <section class="container">
+    <div class="welcome">
+      <h1>Welcome to <span class="red">DJSTMUSIC</span></h1>
+      <p>Latest Santali DJ Songs • DJ Remixes • Music & Entertainment<br>Listen Online • Download MP3 • Share with Friends</p>
+    </div>
+
+    <section id="songs">
+      <div class="title"><h2>🎵 Latest Santali DJ Songs</h2></div>
+      <div class="search"><input id="search" type="search" placeholder="🔎 Search your favourite song..." oninput="searchSongs()"></div>
+
+      <article class="song" data-title="LOWA BAHA DJ RABI RAJ HEMBRAM">
+        <div class="num">SONG #01</div>
+        <h3>🎧 LOWA BAHA DJ RABI RAJ HEMBRAM</h3>
+        <div class="meta">Santali DJ Remix • DJSTMUSIC</div>
+        <audio controls preload="metadata">
+          <source src="songs/lowa-baha.mp3" type="audio/mpeg">
+          Your browser does not support audio.
+        </audio>
+        <div class="actions">
+          <a class="btn download" href="songs/lowa-baha.mp3" download>⬇ Download MP3</a>
+          <button class="btn share" onclick="shareSong('LOWA BAHA DJ RABI RAJ HEMBRAM','songs/lowa-baha.mp3')">↗ Share</button>
+        </div>
+      </article>
+
+      <article class="song" data-title="NAGIN BALA TATOO DJ RABI RAJ HEMBRAM">
+        <div class="num">SONG #02</div>
+        <h3>🎧 NAGIN BALA TATOO DJ RABI RAJ HEMBRAM</h3>
+        <div class="meta">Santali DJ Remix • DJSTMUSIC</div>
+        <audio controls preload="metadata">
+          <source src="songs/nagin-bala-tatoo.mp3" type="audio/mpeg">
+          Your browser does not support audio.
+        </audio>
+        <div class="actions">
+          <a class="btn download" href="songs/nagin-bala-tatoo.mp3" download>⬇ Download MP3</a>
+          <button class="btn share" onclick="shareSong('NAGIN BALA TATOO DJ RABI RAJ HEMBRAM','songs/nagin-bala-tatoo.mp3')">↗ Share</button>
+        </div>
+      </article>
+
+      <div class="no-result" id="noResult">No song found.</div>
+    </section>
+
+    <section class="about" id="about">
+      <h2>About <span class="red">DJSTMUSIC</span></h2>
+      <p>Welcome to DJSTMUSIC, your destination for Santali DJ songs, remixes and music entertainment. Listen online, download MP3 tracks and share songs with friends.</p>
+    </section>
+
+    <section class="follow">
+      <h2>❤️ Follow DJSTMUSIC</h2>
+      <div class="follow-grid">
+        <a href="#" target="_blank" rel="noopener">Facebook</a>
+        <a href="#" target="_blank" rel="noopener">WhatsApp</a>
+        <a href="#" target="_blank" rel="noopener">YouTube • Subscribe</a>
+        <a href="#" target="_blank" rel="noopener">Instagram</a>
+      </div>
+    </section>
+  </section>
+</main>
+
+<footer>© 2026 <b>DJSTMUSIC</b> • Santali Songs • DJ Remixes • Music & Entertainment</footer>
+
+<script>
+function searchSongs(){
+  const q=document.getElementById('search').value.toLowerCase().trim();
+  const cards=document.querySelectorAll('.song');
+  let found=0;
+  cards.forEach(card=>{
+    const ok=card.dataset.title.toLowerCase().includes(q);
+    card.style.display=ok?'block':'none';
+    if(ok) found++;
+  });
+  document.getElementById('noResult').style.display=found?'none':'block';
+}
+
+async function shareSong(title,file){
+  const url=new URL(file,location.href).href;
+  if(navigator.share){
+    try{
+      await navigator.share({title:'DJSTMUSIC - '+title,text:title+' | DJSTMUSIC',url});
+    }catch(e){}
+  }else{
+    try{
+      await navigator.clipboard.writeText(url);
+      alert('Song link copied! अब WhatsApp/Facebook पर share कर सकते हैं।');
+    }catch(e){
+      prompt('Copy song link:',url);
+    }
+  }
+}
+
+/*
+  Subscriber count:
+  Static GitHub Pages cannot securely fetch a live YouTube subscriber count
+  without an API/service. Change "10K+" above to your current count,
+  or connect a YouTube API/backend later.
+*/
+</script>
+</body>
+</html>
