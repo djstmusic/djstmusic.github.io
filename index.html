@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="DJSTMUSIC - Professional Santali DJ MP3 Songs and Remixes">
+<meta name="theme-color" content="#050505">
+<title>DJSTMUSIC | DJ MP3 Songs</title>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+font-family:Arial,Helvetica,sans-serif;
+color:#fff;
+background:
+radial-gradient(circle at 50% -10%,#5a0000 0%,#180000 28%,#050505 65%,#000 100%);
+min-height:100vh;
+}
+body:after{
+content:"";
+position:fixed;
+inset:0;
+pointer-events:none;
+z-index:-1;
+opacity:.16;
+background:repeating-linear-gradient(135deg,transparent 0 90px,rgba(255,0,0,.5) 91px 92px,transparent 93px 170px);
+}
+
+/* HERO */
+.hero{
+max-width:1200px;
+margin:18px auto 0;
+padding:0 12px;
+}
+.hero img{
+width:100%;
+display:block;
+border-radius:20px;
+border:1px solid #ff1717;
+box-shadow:0 0 28px rgba(255,0,0,.5),0 0 90px rgba(255,0,0,.12);
+}
+
+/* BRAND */
+.brand{
+text-align:center;
+padding:24px 15px 10px;
+}
+.brand h1{
+font-size:34px;
+font-weight:1000;
+letter-spacing:2px;
+}
+.brand h1 span{
+color:#ff0909;
+text-shadow:0 0 15px red;
+}
+.brand p{
+margin-top:8px;
+color:#aaa;
+font-size:15px;
+}
+
+/* CONTAINER */
+.container{
+max-width:1050px;
+margin:auto;
+padding:10px 15px 60px;
+}
+
+/* SEARCH */
+.search{
+margin:18px 0;
+}
+.search input{
+width:100%;
+padding:16px 18px;
+border-radius:14px;
+border:1px solid #570000;
+background:#0d0d0d;
+color:#fff;
+font-size:16px;
+outline:none;
+}
+.search input:focus{
+border-color:#ff1111;
+box-shadow:0 0 18px rgba(255,0,0,.25);
+}
+
+/* SECTION */
+.section-title{
+margin:22px 0;
+padding:18px 20px;
+border-radius:16px;
+background:linear-gradient(100deg,#ff0808,#850000,#ff0808);
+box-shadow:0 8px 30px rgba(255,0,0,.28);
+}
+.section-title h2{
+font-size:23px;
+}
+
+/* EMPTY */
+.empty{
+text-align:center;
+padding:55px 20px;
+border:1px solid #430000;
+border-radius:20px;
+background:linear-gradient(145deg,#151515,#070707);
+box-shadow:0 12px 35px rgba(0,0,0,.6);
+}
+.empty .icon{
+font-size:52px;
+margin-bottom:14px;
+}
+.empty h3{
+font-size:23px;
+margin-bottom:8px;
+}
+.empty p{
+color:#999;
+line-height:1.7;
+}
+
+/* SONG CARD TEMPLATE */
+.song-card{
+background:linear-gradient(145deg,#171717,#060606);
+border:1px solid #450000;
+border-left:5px solid #ff0808;
+border-radius:20px;
+padding:22px;
+margin:20px 0;
+box-shadow:0 12px 35px rgba(0,0,0,.65);
+}
+.song-number{
+color:#ff1717;
+font-weight:900;
+margin-bottom:9px;
+}
+.song-title{
+font-size:21px;
+font-weight:900;
+margin-bottom:7px;
+}
+.song-meta{
+color:#999;
+margin-bottom:14px;
+}
+audio{
+width:100%;
+margin:7px 0 17px;
+}
+.actions{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:12px;
+}
+.btn{
+min-height:52px;
+display:flex;
+align-items:center;
+justify-content:center;
+border-radius:12px;
+font-size:16px;
+font-weight:900;
+cursor:pointer;
+text-decoration:none;
+}
+.download{
+background:#151515;
+border:1px solid #555;
+color:#fff;
+}
+.download:hover{
+border-color:#ff0808;
+}
+.share{
+border:0;
+background:linear-gradient(135deg,#ff0808,#a00000);
+color:#fff;
+}
+.share:hover{
+box-shadow:0 0 20px rgba(255,0,0,.45);
+}
+
+/* ABOUT */
+.about{
+margin-top:28px;
+padding:26px;
+border:1px solid #430000;
+border-radius:20px;
+background:#0b0b0b;
+}
+.about h2{
+margin-bottom:12px;
+}
+.about p{
+color:#aaa;
+line-height:1.8;
+}
+
+/* FOOTER */
+footer{
+text-align:center;
+padding:30px 15px;
+color:#777;
+background:#020202;
+border-top:1px solid #350000;
+}
+footer strong{
+color:#ff0808;
+}
+
+/* MOBILE */
+@media(max-width:650px){
+.hero{padding:0 6px;margin-top:8px}
+.hero img{border-radius:12px}
+.brand h1{font-size:27px}
+.section-title h2{font-size:20px}
+.actions{grid-template-columns:1fr}
+}
+</style>
+</head>
+
+<body>
+
+<!-- DJ LOGO / BANNER -->
+<section class="hero">
+<img src="djstmusic-banner.png" alt="DJSTMUSIC DJ Logo and Banner">
+</section>
+
+<!-- BRAND -->
+<section class="brand">
+<h1><span>DJST</span>MUSIC</h1>
+<p>Latest Santali DJ Songs • DJ Remixes • MP3 Music</p>
+</section>
+
+<main class="container">
+
+<!-- SEARCH -->
+<div class="search">
+<input id="search" type="search" placeholder="🔎 Search DJ song..." oninput="searchSongs()">
+</div>
+
+<!-- LATEST SONGS -->
+<section>
+<div class="section-title">
+<h2>🎵 Latest DJ Songs</h2>
+</div>
+
+<!--
+NEW MP3 SONG TEMPLATE
+
+Copy the following song-card whenever you upload a new MP3:
+
+<div class="song-card" data-title="YOUR SONG NAME">
+  <div class="song-number">SONG #01</div>
+  <div class="song-title">🎧 YOUR SONG NAME</div>
+  <div class="song-meta">DJ Remix • DJSTMUSIC</div>
+  <audio controls preload="metadata">
+    <source src="songs/your-song.mp3" type="audio/mpeg">
+  </audio>
+  <div class="actions">
+    <a class="btn download" href="songs/your-song.mp3" download>⬇ Download MP3</a>
+    <button class="btn share" onclick="shareSong('YOUR SONG NAME','songs/your-song.mp3')">↗ Share</button>
+  </div>
+</div>
+-->
+
+<!-- NO OLD SONGS -->
+<div class="empty">
+<div class="icon">🎧</div>
+<h3>New DJ Songs Coming Soon</h3>
+<p>New Santali DJ songs and remixes will be uploaded here.</p>
+</div>
+
+</section>
+
+<!-- ABOUT -->
+<section class="about">
+<h2>About <span style="color:#ff0808">DJSTMUSIC</span></h2>
+<p>
+DJSTMUSIC is a professional Santali DJ MP3 music website.
+Listen to DJ songs online, download MP3 tracks and share
+your favourite music with friends.
+</p>
+</section>
+
+</main>
+
+<footer>
+© 2026 <strong>DJSTMUSIC</strong> • Santali DJ Songs • MP3 Music
+</footer>
+
+<script>
+function searchSongs(){
+const q=document.getElementById("search").value.toLowerCase().trim();
+const cards=document.querySelectorAll(".song-card");
+cards.forEach(card=>{
+card.style.display=card.dataset.title.toLowerCase().includes(q)?"block":"none";
+});
+}
+
+async function shareSong(title,file){
+const url=new URL(file,window.location.href).href;
+
+if(navigator.share){
+try{
+await navigator.share({
+title:"DJSTMUSIC - "+title,
+text:title+" | DJSTMUSIC",
+url:url
+});
+}catch(e){}
+}else{
+try{
+await navigator.clipboard.writeText(url);
+alert("Song link copied!");
+}catch(e){
+prompt("Copy Song Link:",url);
+}
+}
+}
+</script>
+
+</body>
+</html>
