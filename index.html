@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#050505">
+<title>DJSTMUSIC | Santali DJ MP3</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 50% -10%,#650000,#160000 32%,#050505 72%,#000);color:#fff;font-family:Arial,sans-serif}
+.wrap{max-width:1100px;margin:auto;padding:12px}.hero img{width:100%;border-radius:18px;border:1px solid #f11;box-shadow:0 0 35px #f003;display:block}
+.brand{text-align:center;padding:22px 10px}.brand h1{font-size:34px;margin:0;font-weight:900;letter-spacing:2px}.brand b{color:#f10}.brand p{color:#aaa;margin:8px 0}
+.search{margin:8px 0 20px}.search input{width:100%;padding:16px;border-radius:14px;border:1px solid #600;background:#0c0c0c;color:#fff;font-size:16px}
+.title{background:linear-gradient(100deg,#f00,#800,#f00);padding:17px 20px;border-radius:16px;box-shadow:0 0 25px #f003}
+.card,.empty,.about{background:#0d0d0d;border:1px solid #500;border-left:5px solid #f00;border-radius:18px;padding:20px;margin:18px 0;box-shadow:0 12px 30px #0008}
+.num{color:#f22;font-weight:900}.song{font-size:21px;font-weight:900;margin:7px 0}.meta{color:#999;margin-bottom:10px}audio{width:100%;margin:8px 0 15px}.actions{display:grid;grid-template-columns:1fr 1fr;gap:10px}.btn{padding:14px;border-radius:11px;text-align:center;font-weight:900;text-decoration:none;border:1px solid #555;background:#111;color:#fff;cursor:pointer}.share{background:linear-gradient(135deg,#f00,#900);border:0}.empty{text-align:center;padding:55px 20px;border-left:1px solid #500}.empty .icon{font-size:50px}.empty p,.about p{color:#999;line-height:1.7}
+footer{text-align:center;color:#777;padding:28px;border-top:1px solid #400;margin-top:30px}
+@media(max-width:600px){.brand h1{font-size:28px}.actions{grid-template-columns:1fr}.song{font-size:19px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <section class="hero"><img src="djstmusic-banner.png" alt="DJSTMUSIC"></section>
+  <section class="brand"><h1><b>DJST</b>MUSIC</h1><p>Latest Santali DJ Songs • DJ Remixes • MP3 Music</p></section>
+  <div class="search"><input id="search" placeholder="🔎 Search DJ song..." oninput="filterSongs()"></div>
+  <div class="title"><h2>🎵 Latest DJ Songs</h2></div>
+  <div id="songs"><div class="empty"><div class="icon">⏳</div><h2>Loading songs...</h2></div></div>
+  <section class="about"><h2>About <span style="color:#f00">DJSTMUSIC</span></h2><p>Professional Santali DJ MP3 website. Listen online, download and share the latest DJ songs and remixes.</p></section>
+</div>
+<footer>© 2026 <b style="color:#f00">DJSTMUSIC</b> • Santali DJ Songs</footer>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
+import { getFirestore, collection, query, orderBy, onSnapshot } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+import { firebaseConfig } from "./firebase-config.js";
+const app=initializeApp(firebaseConfig);
+const db=getFirestore(app);
+let allSongs=[];
+const box=document.getElementById("songs");
+
+function render(){
+ const q=(document.getElementById("search").value||"").toLowerCase().trim();
+ const list=allSongs.filter(s=>(s.title||"").toLowerCase().includes(q));
+ if(!list.length){box.innerHTML='<div class="empty"><div class="icon">🎧</div><h2>'+ (allSongs.length?'No song found':'No songs yet') +'</h2><p>New songs uploaded from the Admin panel will appear here automatically.</p></div>';return;}
+ box.innerHTML=list.map((s,i)=>`
+ <article class="card">
+   <div class="num">SONG #${String(i+1).padStart(2,"0")}</div>
+   <div class="song">🎧 ${escapeHtml(s.title)}</div>
+   <div class="meta">Santali DJ Remix • DJSTMUSIC</div>
+   <audio controls preload="metadata" src="${s.url}"></audio>
+   <div class="actions">
+     <a class="btn" href="${s.url}" download>⬇ Download MP3</a>
+     <button class="btn share" data-url="${s.url}" data-title="${escapeAttr(s.title)}">↗ Share</button>
+   </div>
+ </article>`).join("");
+ document.querySelectorAll(".share").forEach(b=>b.onclick=async()=>{
+   const url=new URL(b.dataset.url,location.href).href, title=b.dataset.title;
+   if(navigator.share){try{await navigator.share({title:"DJSTMUSIC - "+title,text:title,url})}catch(e){}}
+   else{try{await navigator.clipboard.writeText(url);alert("Song link copied!")}catch(e){prompt("Copy link:",url)}}
+ });
+}
+function escapeHtml(x){return String(x).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
+function escapeAttr(x){return escapeHtml(x)}
+window.filterSongs=render;
+onSnapshot(query(collection(db,"songs"),orderBy("createdAt","desc")),snap=>{
+ allSongs=snap.docs.map(d=>({id:d.id,...d.data()})); render();
+},err=>{box.innerHTML='<div class="empty"><div class="icon">⚠️</div><h2>Could not load songs</h2><p>Check Firebase configuration and Firestore rules.</p></div>';console.error(err)});
+</script>
+</body>
+</html>

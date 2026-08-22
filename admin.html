@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>DJSTMUSIC Admin Upload</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#070707;color:#fff;font-family:Arial,sans-serif}
+main{max-width:600px;margin:30px auto;padding:18px}.box{background:#111;border:1px solid #600;border-radius:20px;padding:24px;box-shadow:0 0 35px #f002}
+h1{margin-top:0;color:#f22}.sub{color:#999}.field{margin:16px 0}label{display:block;margin-bottom:7px;font-weight:bold}
+input{width:100%;padding:14px;border-radius:10px;border:1px solid #555;background:#050505;color:#fff}
+button{width:100%;padding:15px;border:0;border-radius:11px;background:linear-gradient(135deg,#f00,#900);color:#fff;font-size:16px;font-weight:900;cursor:pointer}
+button.dark{background:#222;border:1px solid #555}.status{margin-top:15px;padding:12px;border-radius:10px;background:#090909;color:#aaa;line-height:1.5}.progress{height:8px;background:#222;border-radius:20px;overflow:hidden;margin-top:10px}.bar{height:100%;width:0;background:#f00}
+a{color:#f33}.hidden{display:none}.top{display:flex;gap:10px}.top button{flex:1}
+</style>
+</head>
+<body>
+<main>
+<div class="box">
+<h1>🎵 DJSTMUSIC ADMIN</h1>
+<p class="sub">Upload MP3 once — it will automatically appear on the main website.</p>
+
+<section id="login">
+<div class="field"><label>Email</label><input id="email" type="email" autocomplete="username"></div>
+<div class="field"><label>Password</label><input id="password" type="password" autocomplete="current-password"></div>
+<button id="loginBtn">🔐 Login</button>
+</section>
+
+<section id="panel" class="hidden">
+<div class="top">
+<button class="dark" id="logoutBtn">Logout</button>
+<a href="index.html" style="display:flex;align-items:center;justify-content:center;flex:1">Open Website</a>
+</div>
+<div class="field"><label>Song Name</label><input id="title" placeholder="Example: NAGIN BALA TATOO DJ RABI RAJ HEMBRAM"></div>
+<div class="field"><label>MP3 File</label><input id="file" type="file" accept=".mp3,audio/mpeg"></div>
+<button id="uploadBtn">⬆ Upload Song</button>
+<div class="progress"><div class="bar" id="bar"></div></div>
+<div class="status" id="status">Ready.</div>
+</section>
+</div>
+</main>
+
+<script type="module">
+import {initializeApp} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
+import {getAuth,onAuthStateChanged,signInWithEmailAndPassword,signOut} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
+import {getStorage,ref,uploadBytesResumable,getDownloadURL} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-storage.js";
+import {getFirestore,collection,addDoc,serverTimestamp} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+import {firebaseConfig} from "./firebase-config.js";
+
+const app=initializeApp(firebaseConfig), auth=getAuth(app), storage=getStorage(app), db=getFirestore(app);
+const $=id=>document.getElementById(id), status=$("status");
+onAuthStateChanged(auth,user=>{$("login").classList.toggle("hidden",!!user);$("panel").classList.toggle("hidden",!user);});
+$("loginBtn").onclick=async()=>{try{await signInWithEmailAndPassword(auth,$("email").value,$("password").value);status.textContent="Logged in."}catch(e){alert("Login failed: "+e.message)}};
+$("logoutBtn").onclick=()=>signOut(auth);
+$("uploadBtn").onclick=async()=>{
+ const title=$("title").value.trim(), file=$("file").files[0];
+ if(!title)return alert("Song name enter karein.");
+ if(!file)return alert("MP3 file select karein.");
+ if(file.type!=="audio/mpeg" && !file.name.toLowerCase().endsWith(".mp3"))return alert("Sirf MP3 file upload karein.");
+ const safe=file.name.replace(/[^a-zA-Z0-9._-]/g,"_"), path="songs/"+Date.now()+"-"+safe;
+ const task=uploadBytesResumable(ref(storage,path),file,{contentType:"audio/mpeg"});
+ task.on("state_changed",s=>{$("bar").style.width=(s.bytesTransferred/s.totalBytes*100)+"%";status.textContent="Uploading... "+Math.round(s.bytesTransferred/s.totalBytes*100)+"%"},
+ async()=>{
+  try{
+   const url=await getDownloadURL(task.snapshot.ref);
+   await addDoc(collection(db,"songs"),{title,url,storagePath:path,fileName:file.name,createdAt:serverTimestamp()});
+   status.textContent="✅ Upload successful. Song is now live on the website.";
+   $("title").value="";$("file").value="";$("bar").style.width="0%";
+  }catch(e){status.textContent="❌ Database save failed: "+e.message}
+ },
+ e=>{status.textContent="❌ Upload failed: "+e.message}
+ );
+};
+</script>
+</body>
+</html>
